@@ -1,0 +1,32 @@
+3 Real-Time Protocol Matrix
+REST APIs (HTTP): Used for fetching role-specific content layouts dynamically on perspective change.
+
+WebSockets (Socket.io): Used for streaming live system telemetry metrics directly to the CTO stress-tester view.
+
+---
+
+## File 2: `ROLE_HR_CEO.md`
+This handles the business logic and tracking for non-technical visitors.
+
+```markdown
+# View Specification: HR Recruiter & CEO Options
+
+## 1. HR Recruiter Configuration
+- **Objective:** Instant keyword validation, clean interface tracking, effortless parsing.
+- **Dynamic Content Injection:**
+  - Headline: "Mohammed Shaheer Moidin | Full-Stack Software Engineer"
+  - Subheading: "Building high-performance user interfaces and responsive API backends."
+- **Interactive Component - The Keyword Matcher:**
+  - UI Element: A clean chip-select area populated with standard tech labels (React, Node.js, REST, Git).
+  - Backend Action: Hitting `GET /api/portfolio/skills?match=react`.
+  - Frontend Effect: Selected skills animate smoothly using transition tokens, lighting up related projects and calculating a visual "Role Fit Score" (e.g., "95% Match for your opening").
+
+## 2. CEO / Product Founder Configuration
+- **Objective:** Emphasize product speed-to-market, business value, scalability, and ROI.
+- **Dynamic Content Injection:**
+  - Headline: "Product-Driven Full-Stack Engineer"
+  - Subheading: "Translating business scope into high-performance web products."
+- **Interactive Component - The Project Scope Calculator:**
+  - UI Element: Input sliders for [Project Complexity], [Timeline Months], [Required Scale].
+  - Backend Action: Sends values to NestJS endpoint `POST /api/portfolio/calculate-scope`.
+  - Frontend Effect: React instantly renders an interactive visual project roadmap, showing staging sequences, architectural requirements, and a mock optimization report.

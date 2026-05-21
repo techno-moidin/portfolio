@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Projects | Mohammed Shaheer Moidin Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#690005",
+                    "surface-container-lowest": "#060e20",
+                    "on-secondary-container": "#00344e",
+                    "on-primary-container": "#00422b",
+                    "inverse-surface": "#dae2fd",
+                    "surface-tint": "#4edea3",
+                    "on-tertiary-container": "#4600a7",
+                    "on-tertiary": "#3c0091",
+                    "secondary-container": "#00a2e6",
+                    "inverse-primary": "#006c49",
+                    "primary-container": "#10b981",
+                    "on-secondary-fixed": "#001e2f",
+                    "inverse-on-surface": "#283044",
+                    "secondary": "#89ceff",
+                    "surface-dim": "#0b1326",
+                    "on-tertiary-fixed": "#23005c",
+                    "primary": "#4edea3",
+                    "surface-variant": "#2d3449",
+                    "on-background": "#dae2fd",
+                    "primary-fixed-dim": "#4edea3",
+                    "surface-container-highest": "#2d3449",
+                    "on-primary": "#003824",
+                    "tertiary-fixed": "#e9ddff",
+                    "surface-container-low": "#131b2e",
+                    "on-surface": "#dae2fd",
+                    "on-surface-variant": "#bbcabf",
+                    "on-tertiary-fixed-variant": "#5516be",
+                    "secondary-fixed-dim": "#89ceff",
+                    "secondary-fixed": "#c9e6ff",
+                    "tertiary-container": "#b090ff",
+                    "tertiary-fixed-dim": "#d0bcff",
+                    "error": "#ffb4ab",
+                    "on-secondary": "#00344d",
+                    "surface-container-high": "#222a3d",
+                    "tertiary": "#d0bcff",
+                    "outline": "#86948a",
+                    "surface-bright": "#31394d",
+                    "background": "#0b1326",
+                    "outline-variant": "#3c4a42",
+                    "on-primary-fixed": "#002113",
+                    "on-secondary-fixed-variant": "#004c6e",
+                    "surface-container": "#171f33",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#005236",
+                    "surface": "#0b1326",
+                    "error-container": "#93000a",
+                    "primary-fixed": "#6ffbbe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1200px",
+                    "section-gap": "8rem",
+                    "stack-sm": "0.5rem",
+                    "stack-md": "1.5rem",
+                    "gutter": "2rem",
+                    "stack-lg": "3rem"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "label-caps": ["JetBrains Mono"],
+                    "body-md": ["Inter"],
+                    "code-md": ["JetBrains Mono"],
+                    "display-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "code-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(78, 222, 163, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 0 64px rgba(78, 222, 163, 0.05);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(78, 222, 163, 0.3);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b1326;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4edea3;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant h-20">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-gutter h-full">
+<div class="font-code-md text-code-md font-bold text-primary tracking-tighter">
+                MSM_PORTFOLIO
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Experience</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-200" href="#">Projects</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Skills</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label-caps px-6 py-3 hover:opacity-90 active:scale-95 transition-all">
+                Download CV
+            </button>
+</div>
+</nav>
+<main class="pt-32 pb-section-gap">
+<header class="max-w-container-max mx-auto px-gutter mb-16">
+<div class="flex items-center gap-4 mb-4">
+<span class="h-[1px] w-12 bg-primary"></span>
+<span class="text-primary font-label-caps uppercase tracking-widest">Case Studies</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg mb-6 leading-tight">Featured <span class="text-primary">Engineering</span> Projects.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                A selection of high-performance web applications, microservices architectures, and enterprise-grade ecommerce solutions architected for scalability.
+            </p>
+</header>
+<!-- Projects Bento/Grid Layout -->
+<section class="max-w-container-max mx-auto px-gutter">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Project Card 1: SoftBuilders Properties -->
+<div class="glass-card p-gutter flex flex-col group relative overflow-hidden">
+<div class="mb-6 overflow-hidden aspect-video bg-surface-container-high border border-outline-variant relative">
+<img alt="SoftBuilders Properties" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A sophisticated digital visualization of a real estate platform dashboard with minimalist map layers and property listing cards. The aesthetic is clean and modern, using an obsidian dark mode palette with sharp emerald accents for UI buttons. Professional lighting creates a depth-of-field effect on the sleek interface elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHnUlFs8_q6iRndewkIQ6DxpbPJHzd35dfTv199urJ9Zfn1j2GS4ydFTyK5KZnCT-OJd157_BVUty5MVLQcpNcUpjVEnw3u0b-9dEs7M8SHfGG8QR1-ZpVXPZKFM4cjz8SoxlmcqDHpiZ-CmUBwRtJglW2ULj2YtJf4LxYvxld4dw-6ppaSNRbNs4aYneJzjuopsztIh3tBvzkc2DuiI0_7vyyZ1Lx3Gp9HbHW3kpqXefdpQGy83gdEbsP4u9UVpIv9NkIORcLuHA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">NESTJS</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">MONGODB</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">ELASTICSEARCH</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">SoftBuilders Properties</h3>
+<p class="text-on-surface-variant mb-6 font-body-md">
+                            Engineered a high-performance real estate platform featuring complex property search algorithms and microservices-based communication.
+                        </p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-label-caps group/link" href="#">
+                        VIEW REPOSITORY 
+                        <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">arrow_right_alt</span>
+</a>
+</div>
+<!-- Project Card 2: Quickdropx -->
+<div class="glass-card p-gutter flex flex-col group">
+<div class="mb-6 overflow-hidden aspect-video bg-surface-container-high border border-outline-variant relative">
+<img alt="Quickdropx" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A professional visualization of an e-commerce checkout flow featuring secure stripe payment integration icons. The scene is rendered in a high-end tech aesthetic with deep slate backgrounds and glowing emerald status indicators. Micro-interactions are suggested by translucent overlay layers and thin vector lines connecting system nodes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwki-SJd0hAJUm7mUisxmM9f32juccPiYEmWOyEB_5NJQj74ExWRESHG4J8si_cjF9DcpPrCqEjXadM3_4dvYeIK_unh6icIwzAOqCpWy9EiV0_OVSzPmZX6BwS9j3QNFfgpCB8bdNIDbqv0gaxTEmvLPRqv5Pyx92DTnp6IewV66KwnVXzdcIpzrVgF24kr9nNlAU9UgIHSMhglrED4xEy-25hreN4StVLnvSg4xm53Tmz4Ncsrbx4fC0jZ73VcqQj14Ze5buZYY"/>
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">STRIPE</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">NODE.JS</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">CRYPTO</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">Quickdropx</h3>
+<p class="text-on-surface-variant mb-6 font-body-md">
+                            Architected a dropshipping engine with hybrid payment mechanisms, supporting both Stripe and internal QDX crypto token wallets.
+                        </p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-label-caps group/link" href="#">
+                        VIEW REPOSITORY 
+                        <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">arrow_right_alt</span>
+</a>
+</div>
+<!-- Project Card 3: Copodeals -->
+<div class="glass-card p-gutter flex flex-col group">
+<div class="mb-6 overflow-hidden aspect-video bg-surface-container-high border border-outline-variant relative">
+<img alt="Copodeals" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A complex data analytics dashboard showing real-time inventory and deal monitoring graphs. The UI design follows a strict technical aesthetic with monospaced typography and a dark slate color scheme. Electric emerald accents highlight key performance metrics and successful transaction logs in a precise, structured layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZy1VoBqh1qzLQImKj4S5az3n1S1YTUzC3SP4bSlTcCLeU6f9YapWFQNv2FkC1sykPVCPvuZnOYj41VDJHetu4EtW3Q3XJQiUNkmJvifWWyeV8dPZx0hazqGvFDFgrF4UWvzV3xqhvN3ETjH8JxQIBEx0U9TnkX0zgHKteh43sdtwaa5z4YVh6GAn_3sfp6rhuU4Xhcm73RL07FuI-iR0E68atNeOsZhlztd1_Ef2LlVoNBtiF0v-tbSET1qRtabSiSkcD_j-WclU"/>
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">REACT</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">AWS</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">REDIS</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">Copodeals</h3>
+<p class="text-on-surface-variant mb-6 font-body-md">
+                            Developed a multi-tenant coupon platform with real-time inventory syncing and highly optimized server-side caching.
+                        </p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-label-caps group/link" href="#">
+                        VIEW REPOSITORY 
+                        <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">arrow_right_alt</span>
+</a>
+</div>
+<!-- Project Card 4: Bossini.ae -->
+<div class="glass-card p-gutter flex flex-col group">
+<div class="mb-6 overflow-hidden aspect-video bg-surface-container-high border border-outline-variant relative">
+<img alt="Bossini.ae" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A premium fashion retail storefront displayed on a high-resolution display. The layout emphasizes high-quality product imagery with a minimalist technical UI wrapper. Subtle shadows and glassmorphic navigation bars provide a sense of luxury, while the emerald primary color accents the shopping bag and checkout buttons." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyaGOMQQDc_SuIVWIXGJqDuG5-mLsFj9LNSkkPpBQY20PNM648Bzo2sRMcvePJtB_2yVX3UvBOn42eAr1ggEpxfGQt2suWWVvdbRw3UqN7xKR1CZvbRx9iA3OUiyJFdVc7QTQL4XbC3__KbLZbTS5WHb7pMl89Hvt1OOIduNNm08I8Ibzw2qo7qv2GsgusJn4Si9Lvvu6OZ4qRcGnhN7X89rnU2XZjOb6KmIpTB_SzahGr5zt8-ZuBDNykomz9P20CgVTvskYvZcc"/>
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">SHOPIFY</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">LIQUID</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">GCP</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">Bossini.ae</h3>
+<p class="text-on-surface-variant mb-6 font-body-md">
+                            Optimized storefront for performance and conversion, managing large-scale product catalogs for a premium retail brand.
+                        </p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-label-caps group/link" href="#">
+                        VIEW REPOSITORY 
+                        <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">arrow_right_alt</span>
+</a>
+</div>
+<!-- Project Card 5: DrHero.ae -->
+<div class="glass-card p-gutter flex flex-col group">
+<div class="mb-6 overflow-hidden aspect-video bg-surface-container-high border border-outline-variant relative">
+<img alt="DrHero.ae" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A futuristic medical services scheduling app with calendar views and specialist profiles. The interface uses a clean, authoritative design language with wide spacing and legible typography. Soft glow effects around confirmed appointments and interactive calendar cells reinforce the emerald-on-obsidian technical branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlVpNnLXun8N1Nata-GIWrWq6UV3kkQUiNuZbfdKaGbphdytgg8B9BogCJwJpS3mTcCesTsspXFKDAo-ghCD8LrPybB9qSIOACaZ_1cnBK4buJ_8age9LouLnee9LQYLOrZV-_O__g7CxCG6PxzYXhmB_Xp92NH-adXOE8s127XvVTr24HODmlCogOusJjVa1I3dt9jL3tvQNJBzyzHEbVFToF1D0-SGD6i3OaSkulPhyKRshyJ_mUNmXe3z7UtoHDf8kbMXaZIzM"/>
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">NEXT.JS</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">PRISMA</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">VULTR</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">DrHero.ae</h3>
+<p class="text-on-surface-variant mb-6 font-body-md">
+                            Healthcare management system facilitating appointments and patient records with high-security data encryption protocols.
+                        </p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-label-caps group/link" href="#">
+                        VIEW REPOSITORY 
+                        <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">arrow_right_alt</span>
+</a>
+</div>
+<!-- Project Card 6: MuxEmail -->
+<div class="glass-card p-gutter flex flex-col group">
+<div class="mb-6 overflow-hidden aspect-video bg-surface-container-high border border-outline-variant relative">
+<img alt="MuxEmail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A technical visualization of a cloud-based email delivery service showing message queues and routing paths. The design features a dark, professional workspace with emerald lines representing data flow between nodes. The aesthetic is reminiscent of an IDE, prioritizing clarity and authority for developer users." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDICupLcjoK3YFSsBlhwGWRQtqtiz1AHzfZN8AhP0Xuxa_baba726Rhhp2HtSRLIG715UAcibrbD6wMcg8jPaKQ8EiKahOr9UUu8UmbAXNWIo5y0qMtzVT8WserNvfMHpT3o2osIwRDyFYZ46XZxKqMmdufuwO8onTa8bGH5RuGR7dV8TaxEL2zAifRGRq9wEYYY15ohJfLXbvsuKaNRx9O6RfuuzhyjfQgUmKzCmLtBN3HUF9VUiQhLFKmoifINKxOKeBz1W6bxCs"/>
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">RABBITMQ</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">DOCKER</span>
+<span class="bg-surface-container-high border border-outline-variant px-2 py-1 font-code-md text-xs text-primary">POSTGRES</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-3">MuxEmail</h3>
+<p class="text-on-surface-variant mb-6 font-body-md">
+                            Scalable email automation infrastructure leveraging message brokers for high-throughput transactional delivery.
+                        </p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary font-label-caps group/link" href="#">
+                        VIEW REPOSITORY 
+                        <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Technical Achievements / Numbers -->
+<section class="mt-section-gap max-w-container-max mx-auto px-gutter grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="border-l border-primary/30 pl-6">
+<div class="font-display-lg text-headline-lg text-primary mb-2">7+</div>
+<div class="font-label-caps text-on-surface-variant">YEARS EXPERIENCE</div>
+</div>
+<div class="border-l border-primary/30 pl-6">
+<div class="font-display-lg text-headline-lg text-primary mb-2">85M+</div>
+<div class="font-label-caps text-on-surface-variant">RECORDS MIGRATED</div>
+</div>
+<div class="border-l border-primary/30 pl-6">
+<div class="font-display-lg text-headline-lg text-primary mb-2">10+</div>
+<div class="font-label-caps text-on-surface-variant">CLOUD DEPLOYMENTS</div>
+</div>
+<div class="border-l border-primary/30 pl-6">
+<div class="font-display-lg text-headline-lg text-primary mb-2">100%</div>
+<div class="font-label-caps text-on-surface-variant">UPTIME FOCUS</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-dim border-t border-outline-variant w-full py-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto px-gutter gap-stack-md">
+<div class="font-code-md text-code-md text-primary">
+                MSM_PORTFOLIO
+            </div>
+<p class="text-on-surface-variant font-body-md text-center">
+                © 2024 Mohammed Shaheer Moidin. Built for performance.
+            </p>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-primary hover:translate-y-[-2px] transition-all" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-primary hover:translate-y-[-2px] transition-all" href="#">GitHub</a>
+<a class="text-on-surface-variant hover:text-primary hover:translate-y-[-2px] transition-all" href="#">Email</a>
+</div>
+</div>
+</footer>
+<!-- Interactive Background Particles Canvas -->
+<canvas class="fixed inset-0 pointer-events-none -z-10 opacity-30" id="canvas"></canvas>
+<script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    opacity: Math.random() * 0.5
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+
+                ctx.fillStyle = `rgba(78, 222, 163, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+    </script>
+</body></html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammed Shaheer Moidin — Resume</title>
+  <style>
+    /* ATS-safe, Word-compatible styling */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Calibri, Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #111;
+      background: #fff;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 48px;
+    }
+
+    /* Header */
+    .header { text-align: left; border-bottom: 2px solid #111; padding-bottom: 10px; margin-bottom: 14px; }
+    .header h1 { font-size: 22pt; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .header .title { font-size: 11pt; font-weight: 600; color: #444; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+    .header .contacts { font-size: 10pt; color: #222; margin-top: 6px; }
+    .header .contacts a { color: #222; text-decoration: none; }
+
+    /* Section */
+    .section { margin-top: 16px; }
+    .section-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-bottom: 1px solid #888;
+      padding-bottom: 3px;
+      margin-bottom: 10px;
+      color: #111;
+    }
+
+    /* Summary */
+    .summary p { font-size: 10.5pt; color: #222; text-align: justify; }
+
+    /* Competencies */
+    .competencies-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+    .competency-block strong { font-size: 9.5pt; text-transform: uppercase; display: block; margin-bottom: 2px; color: #111; }
+    .competency-block span { font-size: 10pt; color: #333; }
+
+    /* Experience */
+    .job { margin-bottom: 14px; }
+    .job-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .job-company { font-size: 11pt; font-weight: 700; text-transform: uppercase; }
+    .job-period { font-size: 9.5pt; color: #555; white-space: nowrap; }
+    .job-title-location { font-size: 10pt; font-style: italic; color: #333; margin-bottom: 5px; }
+    .job ul { padding-left: 18px; }
+    .job ul li { font-size: 10.5pt; color: #222; margin-bottom: 3px; }
+
+    /* Education */
+    .edu { margin-bottom: 8px; }
+    .edu strong { font-size: 10.5pt; font-weight: 700; display: block; }
+    .edu span { font-size: 10pt; color: #333; }
+
+    /* Personal */
+    .personal-grid { display: grid; grid-template-columns: 130px 1fr; gap: 4px; font-size: 10.5pt; }
+    .personal-grid .label { font-weight: 600; }
+
+    /* Print */
+    @media print {
+      body { padding: 20px 28px; }
+      a { color: #111 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Mohammed Shaheer Moidin</h1>
+    <div class="title">Full Stack Web Developer</div>
+    <div class="contacts">
+      shaheermoidin97@gmail.com &nbsp;|&nbsp;
+      +971 584178955 &nbsp;|&nbsp;
+      Dubai, UAE &nbsp;|&nbsp;
+      <a href="https://linkedin.com/in/mohammed-shaheer-moidin">linkedin.com/in/mohammed-shaheer-moidin</a>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL SUMMARY -->
+  <div class="section summary">
+    <div class="section-title">Professional Summary</div>
+    <p>
+      Detail-oriented Full Stack Developer with 7+ years of experience in designing, developing, and deploying robust web applications. Expert in cloud-native architectures using AWS and GCP, specializing in scalable microservices and high-performance backend systems. Proven track record of delivering end-to-end solutions, from responsive front-end interfaces to complex data pipelines and automated CI/CD workflows. Passionate about writing clean, maintainable code and optimizing system performance.
+    </p>
+  </div>
+
+  <!-- CORE COMPETENCIES -->
+  <div class="section">
+    <div class="section-title">Core Competencies</div>
+    <div class="competencies-grid">
+      <div class="competency-block">
+        <strong>Frontend Engineering</strong>
+        <span>React.js, Next.js, Redux (Toolkit), Material UI, Tailwind CSS, JavaScript (ES6+), TypeScript</span>
+      </div>
+      <div class="competency-block">
+        <strong>Backend &amp; Database</strong>
+        <span>Node.js, Express, NestJS, MongoDB, MySQL, PostgreSQL, Redis, Elasticsearch</span>
+      </div>
+      <div class="competency-block" style="margin-top:8px">
+        <strong>Cloud &amp; DevOps</strong>
+        <span>AWS (EKS, EC2, ECS, SES, Amplify, Cognito), GCP, Docker, Kubernetes, Kafka, RabbitMQ, CI/CD, Git</span>
+      </div>
+      <div class="competency-block" style="margin-top:8px">
+        <strong>Architecture &amp; Management</strong>
+        <span>Microservices, RESTful APIs, Agile (Scrum), Jira, Unit Testing (Jest), Grafana, Prometheus</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Professional Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">SoftBuilders</span>
+        <span class="job-period">2024 — Present</span>
+      </div>
+      <div class="job-title-location">Backend Developer &nbsp;|&nbsp; Dubai, UAE</div>
+      <ul>
+        <li>Architecting and maintaining a high-traffic real estate platform using NestJS and MongoDB for core business logic.</li>
+        <li>Implementing advanced search functionalities using Elasticsearch, resulting in a <strong>40% improvement</strong> in query performance.</li>
+        <li>Orchestrating microservices communication using Apache Kafka for real-time data synchronization.</li>
+        <li>Managing containerized deployments on Google Cloud Platform (GCP) ensuring <strong>99.9% uptime</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Hashgate Technologies</span>
+        <span class="job-period">Oct 2021 — 2024</span>
+      </div>
+      <div class="job-title-location">Full Stack Web Developer &nbsp;|&nbsp; Remote, UAE</div>
+      <ul>
+        <li>Led development of multiple e-commerce and healthcare platforms including copodeals.com, bossini.ae, and drhero.ae.</li>
+        <li>Developed responsive UIs with React and Redux, implementing Material UI for standardized component design.</li>
+        <li>Leveraged AWS services (EKS, EC2, ECS, Amplify, Cognito) to build secure, auto-scaling cloud environments.</li>
+        <li>Conducted rigorous unit testing using Jest and maintained documentation via Swagger for internal and external APIs.</li>
+        <li>Coordinated with cross-functional teams to translate business requirements into technical specifications.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">MuxEmail</span>
+        <span class="job-period">Dec 2019 — June 2021</span>
+      </div>
+      <div class="job-title-location">Full Stack Web Developer &nbsp;|&nbsp; Remote</div>
+      <ul>
+        <li>Engineered the core features of muxemail.com, a high-volume email marketing automation tool.</li>
+        <li>Established email delivery systems using AWS Simple Email Service (SES) and Node.js event loops.</li>
+        <li>Built CI/CD pipelines to automate testing and deployment, <strong>reducing release cycles by 30%</strong>.</li>
+        <li>Managed complex state logic in React to handle real-time campaign performance analytics.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Homnifi (Crypto Mining Platform)</span>
+        <span class="job-period">Contractual</span>
+      </div>
+      <div class="job-title-location">Backend Developer &nbsp;|&nbsp; Remote</div>
+      <ul>
+        <li>Developed backend modules for a crypto mining dashboard, handling real-time data streaming.</li>
+        <li>Integrated Redis caching and RabbitMQ message brokering to manage high-velocity transactional data.</li>
+        <li>Implemented system monitoring and alerting using Grafana and Prometheus on GCP.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Data Queue System</span>
+        <span class="job-period">May 2018 — May 2019</span>
+      </div>
+      <div class="job-title-location">Software Developer &nbsp;|&nbsp; Mangalore, India</div>
+      <ul>
+        <li>Developed web applications using PHP (Laravel/CodeIgniter) and MySQL for retail management.</li>
+        <li>Built mapporentals.com focusing on inventory management and booking modules.</li>
+        <li>Enhanced front-end interactivity with vanilla JavaScript and jQuery.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="edu">
+      <strong>Bachelor of Computer Applications (BCA)</strong>
+      <span>Srinivas Institute of Management Studies &nbsp;|&nbsp; May 2018</span>
+    </div>
+  </div>
+
+  <!-- PERSONAL DETAILS -->
+  <div class="section">
+    <div class="section-title">Personal Details</div>
+    <div class="personal-grid">
+      <span class="label">Languages</span>
+      <span>English, Hindi, Tamil, Malayalam, Kannada</span>
+      <span class="label">Visa Status</span>
+      <span>Employment Visa (Ready to Join)</span>
+    </div>
+  </div>
+
+</body>
+</html>

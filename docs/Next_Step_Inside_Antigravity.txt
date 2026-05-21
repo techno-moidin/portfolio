@@ -1,0 +1,14 @@
+Next Steps Inside Google Antigravity
+Now that these files are written, follow this exact sequence using Antigravity's Agent Manager:
+
+Open your terminal panel inside Antigravity.
+
+Initialize your workspace by setting up the folder structure described in ARCHITECTURE.md.
+
+Press Cmd + E to open the full Agent Manager Mode.
+
+Pass this exact initialization command to your Planning Agent:
+
+"Read ARCHITECTURE.md, ROLE_HR_CEO.md, ROLE_CTO_DEVELOPER.md, and STITCH_SPEC.md inside the root workspace. Create an initial implementation plan artifact to restructure our current React application into a monorepo workspace, construct the NestJS backend application with the requested REST and WebSocket telemetry pathways, and wire up the dynamic role layouts exactly as planned."
+
+The agent will read your files, build out a precise, verifiable blueprint checklist, and write the full boilerplate across both applications simultaneously without breaking your structure. Let's drop these files in and start cooking.

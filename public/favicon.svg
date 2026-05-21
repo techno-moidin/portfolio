@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48">
+  <!-- Dark Background base -->
+  <rect width="48" height="48" rx="10" fill="#0b1326" />
+  
+  <!-- Sleek emerald green glowing border -->
+  <rect x="2" y="2" width="44" height="44" rx="8" stroke="#4edea3" stroke-width="2" stroke-opacity="0.8" />
+  
+  <!-- Geometric MSM bar-chart node layout -->
+  <!-- Left column of M -->
+  <rect x="10" y="14" width="4" height="20" rx="1.5" fill="#4edea3" />
+  <!-- Diagonal parts of M -->
+  <path d="M14 14 L24 24 L34 14" stroke="#4edea3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Right column of M -->
+  <rect x="34" y="14" width="4" height="20" rx="1.5" fill="#4edea3" />
+  
+  <!-- Ambient microservice connection dots on the bottom -->
+  <circle cx="18" cy="30" r="2.5" fill="#10b981" />
+  <circle cx="24" cy="30" r="2.5" fill="#4edea3" />
+  <circle cx="30" cy="30" r="2.5" fill="#10b981" />
+</svg>
