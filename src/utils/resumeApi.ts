@@ -1,4 +1,4 @@
-import fallbackResumeUrl from '../assets/resume/Black and White Elegant Digital Marketing Resume (3).pdf';
+import fallbackResumeUrl from '../assets/resume/shaheer_cv_full.pdf';
 
 /**
  * resumeApi.ts
