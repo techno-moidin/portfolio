@@ -42,7 +42,7 @@ export interface Education {
 export const RESUME_DATA = {
   name: "Mohammed Shaheer Moidin",
   title: "Full Stack Web Developer",
-  phone: "+971 584178955",
+  phone: "+972 524178995",
   about: "Detail-oriented Full Stack Developer with 7+ years of experience designing, developing, and deploying robust web applications. Expert in cloud-native architectures using AWS and GCP, specializing in scalable microservices and high-performance backend systems.",
   email: "shaheermoidin97@gmail.com",
   github: "https://github.com/techno-moidin",
@@ -69,13 +69,15 @@ export const RESUME_DATA = {
       company: "SoftBuilders",
       period: "2024 — Present",
       description: [
-        "**SoftBuilders Properties (Real Estate Platform):** Architected a high-traffic API using NestJS and MongoDB, implementing advanced Elasticsearch queries for a 40% improvement in property search latency.",
-        "**SoftBuilders Properties (Real Estate Platform):** Built a scalable microservices architecture integrating Apache Kafka for real-time inter-service data sync, hosted via Docker/GCP.",
-        "**Homnifi (Crypto Mining & Reward Platform):** Developed queue-based token reward distribution modules using BullMQ, Redis caching, and RabbitMQ event message brokers.",
-        "**Homnifi (Crypto Mining & Reward Platform):** Orchestrated a high-volume database migration, moving 85M+ legacy records to an optimized GCP schema with zero downtime.",
-        "**Quickdropx (Ongoing Dropshipping SaaS):** Engineered payment processing microservices using Stripe Payment Intents, tiered billing engines, and internal QDX utility token wallets.",
+        "**Homnifi-CloudK Feature Team:** Led the feature team in designing and implementing an efficient microservices communication architecture and rewards pipeline.",
+        "**SoftBuilders Properties (Real Estate Platform):** Developed a real estate search engine using NestJS and MongoDB, implementing advanced Elasticsearch indexing to reduce query search latency by 40%.",
+        "**SoftBuilders Properties (Real Estate Platform):** Designed a scalable microservices architecture integrating Apache Kafka for real-time inter-service data synchronization, hosted on Docker and GCP.",
+        "**Homnifi (Crypto Mining & Reward Platform):** Developed queue-based token reward distribution modules using BullMQ retry mechanisms, Redis caching, and RabbitMQ event message brokers.",
+        "**Homnifi (Crypto Mining & Reward Platform):** Led a high-volume database migration, moving 85M+ legacy records to an optimized GCP schema with zero downtime.",
+        "**Quickdropx (Ongoing Dropshipping SaaS):** Engineered the Stripe billing system: payment intents, plan upgrades with mid-cycle proration, trial periods, and coupon handling.",
+        "**Quickdropx (Ongoing Dropshipping SaaS):** Patched a cross-tenant write vulnerability in the product import pipeline and fixed a race condition exceeding team seat limits.",
       ],
-      icons: ["search", "hub", "toll", "database", "payments"],
+      icons: ["groups", "search", "hub", "toll", "database", "payments", "shield"],
       technologies: ["NestJS", "MongoDB", "Elasticsearch", "Kafka", "GCP", "Docker", "BullMQ", "Redis", "RabbitMQ", "Stripe"],
     },
 
@@ -84,15 +86,15 @@ export const RESUME_DATA = {
       id: "2",
       role: "Full Stack Developer & Team Lead",
       company: "Hashgate Technologies",
-      period: "Oct 2021 — 2024",
+      period: "2021 — 2024",
       description: [
-        "Led development of multiple platforms including copodeals.com, bossini.ae, and drhero.ae — delivering responsive UIs with React.js, Redux, Material UI, Next.js, and React Query.",
+        "Led the Hashgate engineering team, coordinating with project managers, clients, and developers to define tasks, establish technical requirements, and plan Agile sprints via Jira.",
         "Built REST APIs using Express.js, Node.js, and MongoDB; secured with JWT authentication, crypto encryption, WebSockets (Socket.IO), and rate limiting.",
         "Deployed web applications using AWS (ECS, EC2, EKS, Amplify, Cognito, SES, Route53, S3) and configured Nginx + PM2 for production environments.",
         "Established CI/CD pipelines via Bitbucket, conducted rigorous unit testing with React Jest, and maintained API documentation via Swagger.",
         "Configured Grafana & Prometheus for system monitoring, and coordinated cross-functional Agile sprints via Jira and Confluence.",
       ],
-      icons: ["layers", "api", "cloud_done", "rocket_launch", "monitoring"],
+      icons: ["groups", "api", "cloud_done", "rocket_launch", "monitoring"],
       technologies: ["AWS", "React", "Node.js", "MongoDB", "Jest", "Docker"],
     },
 
@@ -101,7 +103,7 @@ export const RESUME_DATA = {
       id: "3",
       role: "Full Stack Web Developer",
       company: "MuxEmail",
-      period: "Dec 2019 — Jun 2021",
+      period: "2019 — 2021",
       description: [
         "Engineered core features of muxemail.com — a high-volume email marketing automation SaaS — using React.js, Material UI, Redux, and React Router.",
         "Built REST APIs using Express.js, Node.js, and Mongoose/MongoDB; established email delivery via AWS SES.",
@@ -119,15 +121,14 @@ export const RESUME_DATA = {
       id: "4",
       role: "Junior Web Developer",
       company: "Data Queue System",
-      period: "May 2018 — May 2019",
+      period: "2018 — 2019",
       description: [
-        "Developed web applications using PHP (Laravel/CodeIgniter) and MySQL for retail management systems.",
-        "Built mapporentals.com focusing on inventory management and booking modules.",
-        "Guided students' final year projects, mentoring 25+ batches on web development fundamentals.",
-        "Built interfaces with HTML, JavaScript, jQuery, Bootstrap, CSS, and Media Query.",
+        "Served as a project guide for final year students, mentoring 25+ batches on web development fundamentals, task estimation, and code structure.",
+        "Developed the frontend interface for Mapco Rental (a hardware machinery and tools rental company) to build a clean, modern, and responsive company profile.",
+        "Built responsive user interfaces using HTML, JavaScript, Bootstrap, CSS, and Media Queries.",
       ],
-      icons: ["code", "web", "school", "integration_instructions"],
-      technologies: ["PHP", "MySQL", "JavaScript", "Bootstrap", "HTML/CSS"],
+      icons: ["school", "web", "code"],
+      technologies: ["HTML/CSS", "JavaScript", "Bootstrap"],
     },
   ] as Experience[],
 
@@ -136,7 +137,7 @@ export const RESUME_DATA = {
     {
       title: "Frontend Engineering",
       icon: "layers",
-      skills: ["React JS", "Next JS", "Material UI", "TypeScript", "Tailwind CSS", "Redux"],
+      skills: ["React JS", "Next JS", "Material UI", "TypeScript", "Tailwind CSS", "Redux", "Shopify / Liquid"],
     },
     {
       title: "Core Systems",
@@ -146,7 +147,7 @@ export const RESUME_DATA = {
     {
       title: "Cloud & DevOps",
       icon: "cloud",
-      skills: ["AWS", "GCP", "Docker", "GitHub Actions", "NGINX", "CI/CD", "PM2"],
+      skills: ["AWS", "GCP", "Docker", "GitHub Actions", "NGINX", "CI/CD", "PM2", "Shell Scripting"],
     },
     {
       title: "Microservices",
@@ -178,7 +179,7 @@ export const RESUME_DATA = {
     {
       id: "2",
       title: "Quickdropx",
-      description: "Enterprise dropshipping platform with Stripe Payment Intents, multi-tier billing engine, coupon redemptions, and a hybrid QDX crypto token wallet for partial payments.",
+      description: "QuickDropX is a multi-tenant SaaS platform that combines dropshipping automation (import & resell products across eBay, Shopify, Amazon via supplier integrations) with a native marketplace where sellers can list their own products, manage inventory and shipping, and buyers can browse, cart, and checkout.",
       technologies: ["STRIPE", "NODE.JS", "CRYPTO"],
       link: "#",
       imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCwki-SJd0hAJUm7mUisxmM9f32juccPiYEmWOyEB_5NJQj74ExWRESHG4J8si_cjF9DcpPrCqEjXadM3_4dvYeIK_unh6icIwzAOqCpWy9EiV0_OVSzPmZX6BwS9j3QNFfgpCB8bdNIDbqv0gaxTEmvLPRqv5Pyx92DTnp6IewV66KwnVXzdcIpzrVgF24kr9nNlAU9UgIHSMhglrED4xEy-25hreN4StVLnvSg4xm53Tmz4Ncsrbx4fC0jZ73VcqQj14Ze5buZYY",
