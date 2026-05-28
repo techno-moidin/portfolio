@@ -23,3 +23,19 @@ dist-ssr
 *.sln
 *.sw?
 .opencode
+
+# Security: Ignore all local environment configurations and credentials
+.env
+.env.production
+.env.development
+.env.local
+.env.*.local
+
+# Compile Caches and Build Directories
+dist/
+dist-ssr/
+.turbo/
+.vite/
+coverage/
+*.local
+

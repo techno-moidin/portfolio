@@ -11,6 +11,8 @@ interface SkillMatchResult {
   highlights: string[];
 }
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 export function Skills() {
   const { role } = useRole();
   const [selectedTag, setSelectedTag] = useState<string>('');
@@ -34,7 +36,7 @@ export function Skills() {
     logEvent('API', `GET ${apiPath} - Pending...`);
 
     try {
-      const response = await fetch(`http://localhost:3000${apiPath}`);
+      const response = await fetch(`${API_URL}${apiPath}`);
       if (!response.ok) throw new Error('Backend query failed');
       const data = await response.json();
       
@@ -122,7 +124,7 @@ export function Skills() {
     };
 
     try {
-      const response = await fetch(`http://localhost:3000${apiPath}`, {
+      const response = await fetch(`${API_URL}${apiPath}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

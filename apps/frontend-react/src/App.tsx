@@ -17,16 +17,23 @@ function App() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const { transitionStatus } = useRole();
 
+  const heroGlowRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
       }
-      const heroGlow = document.querySelector('.hero-glow') as HTMLElement;
-      if (heroGlow) {
+      
+      // Cache the hero-glow element query once to prevent high-frequency DOM lookups
+      if (!heroGlowRef.current) {
+        heroGlowRef.current = document.querySelector('.hero-glow') as HTMLElement;
+      }
+      
+      if (heroGlowRef.current) {
         const hX = (e.clientX - window.innerWidth / 2) * 0.05;
         const hY = (e.clientY - window.innerHeight / 2) * 0.05;
-        heroGlow.style.transform = `translate3d(calc(-50% + ${hX}px), calc(-50% + ${hY}px), 0)`;
+        heroGlowRef.current.style.transform = `translate3d(calc(-50% + ${hX}px), calc(-50% + ${hY}px), 0)`;
       }
     };
 

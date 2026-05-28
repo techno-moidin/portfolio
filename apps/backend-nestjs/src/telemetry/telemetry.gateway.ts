@@ -10,7 +10,23 @@ import { TelemetryMetrics } from 'shared-types';
 
 @WebSocketGateway({
   cors: {
-    origin: '*',
+    origin: (requestOrigin: string, callback: (err: Error | null, allow?: boolean) => void) => {
+      const allowedOriginsString = process.env.ALLOWED_ORIGINS || '';
+      const configuredOrigins = allowedOriginsString
+        ? allowedOriginsString.split(',').map(o => o.trim())
+        : [];
+
+      const isLocal = !requestOrigin || requestOrigin.startsWith('http://localhost:') || requestOrigin === 'http://localhost';
+      const isVercel = requestOrigin?.endsWith('.vercel.app');
+      const isConfigured = configuredOrigins.includes(requestOrigin);
+
+      if (isLocal || isVercel || isConfigured) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
   },
 })
 export class TelemetryGateway implements OnGatewayConnection, OnGatewayDisconnect {

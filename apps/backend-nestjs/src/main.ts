@@ -7,9 +7,27 @@ async function bootstrap() {
   // Expose global /api prefix
   app.setGlobalPrefix('api');
   
-  // Enable CORS for frontend requests (both native and Docker environments)
+  const allowedOriginsString = process.env.ALLOWED_ORIGINS || '';
+  const configuredOrigins = allowedOriginsString
+    ? allowedOriginsString.split(',').map(o => o.trim())
+    : [];
+
+  // Enable secure dynamic CORS for frontend requests
   app.enableCors({
-    origin: '*', // Open origin access is ideal for local fullstack evaluation sandboxes
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like curl, mobile clients, or server-to-server)
+      if (!origin) return callback(null, true);
+      
+      const isLocal = origin.startsWith('http://localhost:') || origin === 'http://localhost';
+      const isVercel = origin.endsWith('.vercel.app');
+      const isConfigured = configuredOrigins.includes(origin);
+
+      if (isLocal || isVercel || isConfigured) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });

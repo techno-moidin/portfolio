@@ -5,6 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  build: {
+    sourcemap: false, // Prevents code-sniffing by disabling production source maps
+  },
   server: {
     proxy: {
       // Forward all /api/* requests to the NestJS backend (port 3000).
