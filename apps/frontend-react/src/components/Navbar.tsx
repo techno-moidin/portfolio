@@ -5,6 +5,7 @@ import {
   type ResumeDownloadState,
 } from '../utils/resumeApi';
 import { RESUME_DATA } from '../data/resume';
+import { useRole } from '../utils/RoleContext';
 
 const NAV_LINKS = [
   { label: 'Experience', href: '#experience' },
@@ -97,6 +98,50 @@ function DownloadCVButton({
   );
 }
 
+// ── Perspective Switcher Component ───────────────────────────────────────────
+
+function PerspectiveSwitcher() {
+  const { role, switchRole } = useRole();
+
+  return (
+    <div className="relative flex items-center p-1 bg-surface-container-high/60 border border-outline-variant/60 rounded-full backdrop-blur-md max-w-fit mx-auto">
+      {/* Background sliding indicator pill */}
+      <div
+        className="absolute top-1 bottom-1 rounded-full bg-primary transition-all duration-300 ease-out"
+        style={{
+          left: role === 'HR' ? '4px' : role === 'CEO' ? 'calc(33.33% + 2px)' : 'calc(66.66% + 2px)',
+          width: 'calc(33.33% - 6px)',
+        }}
+      />
+
+      <button
+        onClick={() => switchRole('HR')}
+        className={`relative z-10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full transition-colors duration-300 ${
+          role === 'HR' ? 'text-background' : 'text-on-surface-variant hover:text-primary'
+        }`}
+      >
+        Recruiter
+      </button>
+      <button
+        onClick={() => switchRole('CEO')}
+        className={`relative z-10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full transition-colors duration-300 ${
+          role === 'CEO' ? 'text-background' : 'text-on-surface-variant hover:text-primary'
+        }`}
+      >
+        Founder
+      </button>
+      <button
+        onClick={() => switchRole('CTO')}
+        className={`relative z-10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full transition-colors duration-300 ${
+          role === 'CTO' ? 'text-background' : 'text-on-surface-variant hover:text-primary'
+        }`}
+      >
+        Engineer
+      </button>
+    </div>
+  );
+}
+
 // ── Navbar ─────────────────────────────────────────────────────────────────────
 
 export function Navbar() {
@@ -142,6 +187,8 @@ export function Navbar() {
 
         {/* ── Desktop Menu ── */}
         <div className="hidden md:flex items-center gap-stack-lg">
+          <PerspectiveSwitcher />
+          <div className="h-6 w-px bg-outline-variant"></div>
           {NAV_LINKS.map(({ label, href }) => (
             <a
               key={href}
@@ -203,6 +250,11 @@ export function Navbar() {
           }
         `}
       >
+        {/* Mobile Perspective Switcher */}
+        <div className="w-full flex justify-center px-6">
+          <PerspectiveSwitcher />
+        </div>
+
         {/* Nav links */}
         <ul className="flex flex-col items-center gap-6 list-none p-0 m-0 w-full px-6">
           {NAV_LINKS.map(({ label, href }) => (

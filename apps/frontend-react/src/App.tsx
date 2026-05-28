@@ -10,21 +10,23 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ParticleCanvas } from './components/ParticleCanvas';
 import { NotFound } from './components/NotFound';
+import { useRole } from './utils/RoleContext';
+import { FloatingConsole } from './components/FloatingConsole';
 
 function App() {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const { transitionStatus } = useRole();
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (cursorRef.current) {
-        cursorRef.current.style.left = `${e.clientX}px`;
-        cursorRef.current.style.top = `${e.clientY}px`;
+        cursorRef.current.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
       }
       const heroGlow = document.querySelector('.hero-glow') as HTMLElement;
       if (heroGlow) {
         const hX = (e.clientX - window.innerWidth / 2) * 0.05;
         const hY = (e.clientY - window.innerHeight / 2) * 0.05;
-        heroGlow.style.transform = `translate(calc(-50% + ${hX}px), calc(-50% + ${hY}px))`;
+        heroGlow.style.transform = `translate3d(calc(-50% + ${hX}px), calc(-50% + ${hY}px), 0)`;
       }
     };
 
@@ -78,6 +80,12 @@ function App() {
                      window.location.pathname !== '' && 
                      window.location.pathname !== '/index.html';
 
+  const transitionClass = transitionStatus === 'fading-out'
+    ? 'opacity-0 scale-[0.98] blur-[2px] transition-all duration-200 ease-out'
+    : transitionStatus === 'fading-in'
+    ? 'opacity-0 scale-[0.98] blur-[2px] transition-all duration-300 ease-in'
+    : 'opacity-100 scale-100 blur-0 transition-all duration-300 ease-in-out';
+
   return (
     <div className="bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary overflow-x-hidden">
       <div className="grid-background"></div>
@@ -90,7 +98,7 @@ function App() {
         {isNotFound ? (
           <NotFound />
         ) : (
-          <>
+          <div className={transitionClass}>
             <Hero />
             <About />
             <Experience />
@@ -98,11 +106,12 @@ function App() {
             <Skills />
             <Education />
             <Contact />
-          </>
+          </div>
         )}
       </main>
 
       <Footer />
+      <FloatingConsole />
     </div>
   );
 }
