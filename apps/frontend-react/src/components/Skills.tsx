@@ -94,11 +94,14 @@ export function Skills() {
 
   // Reset states on role shift
   useEffect(() => {
-    setSelectedTag('');
-    setMatchResult(null);
-    setSelectedLines([]);
-    setSandboxFeedback(null);
-    window.dispatchEvent(new CustomEvent('highlight-projects', { detail: [] }));
+    const timer = setTimeout(() => {
+      setSelectedTag('');
+      setMatchResult(null);
+      setSelectedLines([]);
+      setSandboxFeedback(null);
+      window.dispatchEvent(new CustomEvent('highlight-projects', { detail: [] }));
+    }, 0);
+    return () => clearTimeout(timer);
   }, [role]);
 
   // ── 2. Sandbox Bug Submission with Local Fallback ──────────────────────────

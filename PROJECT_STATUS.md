@@ -176,6 +176,11 @@ All portfolio content is centralized here. No hardcoded text in components.
 - [x] **NestJS Backend** — REST + WebSocket API for interactive sandbox features
 - [x] **Monorepo migration** — Restructure into `apps/frontend-react` + `apps/backend-nestjs`
 
+### 🛡️ Production Readiness & Quality Assurance (Phase 3)
+- [x] **Step 1: Security Hardening & Environment Isolation** — Deactivated sourcemaps, secured `.env` ignores, established empty templates, and decoupled dynamic client/server process variable parsing.
+- [x] **Step 2: Automated Testing Suites** — Configured Vitest client specifications and Jest E2E controller integration gates, verifying 20/20 passing specs across both workspaces.
+- [x] **Step 3: CI/CD Pipeline Scaffolding (GitHub Actions)** — Built a cached, dual-job GitHub Actions workflow (`.github/workflows/ci.yml`) automating Node install caching, frontend ESLint compliance audits, unified tests, full workspace builds, and backend/frontend Dockerfile compilation dry-runs.
+
 ---
 
 ## Running Locally
