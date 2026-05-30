@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend-nestjs/Dockerfile
+    container_name: msm-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    restart: always
+
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend-react/Dockerfile
+    container_name: msm-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always

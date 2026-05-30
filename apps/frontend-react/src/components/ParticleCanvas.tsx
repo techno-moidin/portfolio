@@ -20,7 +20,7 @@ export function ParticleCanvas() {
 
     let animationId: number;
     const particles: Particle[] = [];
-    const PARTICLE_COUNT = 60;
+    const PARTICLE_COUNT = 40; // Reduced from 60 to optimize O(N^2) connection loops and save 56% CPU drawing cycles
     let mouse = { x: -9999, y: -9999 };
 
     const resize = () => {

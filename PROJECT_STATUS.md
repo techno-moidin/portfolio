@@ -168,31 +168,47 @@ All portfolio content is centralized here. No hardcoded text in components.
 - [x] **Accessibility** — Verified and integrated clean landmarks, descriptive text, and a11y labels.
 
 ### 🟢 Future / Advanced (from planning docs)
-- [ ] **Role Switcher (HR / CEO / CTO view)** — Dynamic content based on visitor persona
-- [ ] **CTO Code Review Sandbox** — Interactive bug-finding panel with diff view
-- [ ] **Architecture Stress-Tester** — WebSocket-powered system node map with traffic slider
-- [ ] **Keyword Matcher** — Skill chip selector that calculates "Role Fit Score"
-- [ ] **Project Scope Calculator** — Slider-based ROI estimator for CEO view
-- [ ] **NestJS Backend** — REST + WebSocket API for interactive sandbox features
-- [ ] **Monorepo migration** — Restructure into `apps/frontend-react` + `apps/backend-nestjs`
+- [x] **Role Switcher (HR / CEO / CTO view)** — Dynamic content based on visitor persona
+- [x] **CTO Code Review Sandbox** — Interactive bug-finding panel with diff view
+- [x] **Architecture Stress-Tester** — WebSocket-powered system node map with traffic slider
+- [x] **Keyword Matcher** — Skill chip selector that calculates "Role Fit Score"
+- [x] **Project Scope Calculator** — Slider-based ROI estimator for CEO view
+- [x] **NestJS Backend** — REST + WebSocket API for interactive sandbox features
+- [x] **Monorepo migration** — Restructure into `apps/frontend-react` + `apps/backend-nestjs`
 
 ---
 
 ## Running Locally
 
+### Monorepo Setup & Troubleshooting
+
+> [!IMPORTANT]
+> Because this is a monorepo containing local packages (like `packages/shared-types`), you must build the shared packages **first** before running or compiling the workspace applications (`apps/backend-nestjs` and `apps/frontend-react`). If you skip this step, you will encounter the compilation error: 
+> `"Cannot find module 'shared-types' or its corresponding type declarations."`
+
 ```bash
-# Install dependencies
+# 1. Install all monorepo dependencies
 npm install
 
-# Start dev server
+# 2. Build the shared types package (CRITICAL STEP)
+npm run build --workspace=shared-types
+
+# 3. Start the dev servers (runs frontend and backend concurrently)
 npm run dev
-# → http://localhost:5173/
 
-# Production build
+# Alternative granular dev commands:
+# Run frontend only: npm run dev:frontend
+# Run backend only: npm run dev:backend
+```
+
+### Build & Deploy
+
+```bash
+# 1. Compile the shared types first
+npm run build --workspace=shared-types
+
+# 2. Compile both frontend and backend apps
 npm run build
-
-# Preview production build
-npm run preview
 ```
 
 > **Node requirement:** Node.js v20.19+ or v22.12+ (Vite 8 requirement)
