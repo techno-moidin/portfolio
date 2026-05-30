@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import type { Mock } from 'vitest';
 import { Skills } from '../components/Skills';
 import { RoleProvider } from '../utils/RoleContext';
 import React from 'react';
@@ -35,7 +36,7 @@ describe('Skills Component & Offline Fallback', () => {
       highlightedProjects: ['1', '3']
     };
 
-    (globalThis.fetch as vi.Mock).mockResolvedValueOnce({
+    (globalThis.fetch as Mock).mockResolvedValueOnce({
       ok: true,
       json: async () => mockSkillsData,
     });
@@ -58,7 +59,7 @@ describe('Skills Component & Offline Fallback', () => {
 
   it('should seamlessly execute local fallback simulations if backend throws network error', async () => {
     // Mock network error to trigger the catch-block local fallback
-    (globalThis.fetch as vi.Mock).mockRejectedValueOnce(new Error('Network connection timeout'));
+    (globalThis.fetch as Mock).mockRejectedValueOnce(new Error('Network connection timeout'));
 
     renderWithProvider(<Skills />);
 
