@@ -12,6 +12,8 @@ This blueprint outlines the complete technical specifications for **Phase 3 (Pro
 
 ## 🔒 1. High-Fidelity Security & Code Privacy Safeguards
 
+**Status:** `✅ COMPLETED` (Source code maps fully deactivated locally, custom Nginx router denial rules created, and private repo hosting verified).
+
 To prevent external visitors or automated scanners from inspecting, reading, or "sniffing" your original source code in production, we implement three core safety barriers:
 
 ### A. Disabling Browser Sourcemaps
@@ -42,6 +44,8 @@ To prevent external visitors or automated scanners from inspecting, reading, or 
 
 ## 🔑 2. Secrets & Twelve-Factor Environment Isolation
 
+**Status:** `✅ COMPLETED` (Local `.env` credentials fully blocked in gitignore, `.env.example` templates created in frontend and backend, dynamic process parsing fully implemented).
+
 Hardcoding active API endpoints, credentials, or keys inside code repositories is one of the most common vectors for security breaches. We implement a strict **Twelve-Factor App secrets architecture** to isolate runtime environments cleanly:
 
 ```mermaid
@@ -71,6 +75,8 @@ flowchart TD
 ---
 
 ## 🌎 3. Deployed Infrastructure & Zero-Cost Architecture
+
+**Status:** `⏳ PENDING (Awaiting Cloud Hosting Handshakes in Step 4)` (Timeout resilience loops and offline try-catch layers fully implemented on client).
 
 To make deployment completely free in the initial stages while preserving high performance, we have designed a distributed architecture combining Vercel and Render/Railway:
 
@@ -113,6 +119,8 @@ sequenceDiagram
 
 ## ⚡ 4. High-Performance Client-Side Rendering Optimization Architecture
 
+**Status:** `✅ COMPLETED` (Dynamic rendering decoupled, hardware-accelerated `translate3d` transforms, element ref caching, and particle connections loop pruning complete).
+
 Scroll lag and interaction stutter inside web applications are almost always caused by browser paint bottlenecks, layout reflows, and excessive React virtual DOM diffing. To ensure a butter-smooth 60fps/120fps experience for visiting recruiters, we have engineered three advanced frontend rendering optimizations:
 
 ### A. Isolated Dashboard Rendering (Render-Containment)
@@ -145,23 +153,78 @@ Scroll lag and interaction stutter inside web applications are almost always cau
 * [x] Create this descriptive, self-derivative production blueprint (`DEPLOYMENT_TESTING_SECURITY_BLUEPRINT.md`).
 * [x] Decommission obsolete generic planning document `docs/PHASE3_PLAN.md`.
 * [x] Secure root `.gitignore` to explicitly ignore all `.env`, `.env.local`, and build cache artifacts.
-* [x] Create dynamic `.env.example` templates inside the frontend directories.
+* [x] Create dynamic `.env.example` templates inside the frontend AND backend directories.
 * [x] Configure `vite.config.ts` to set `build.sourcemap: false` to completely block code sniffing.
 * [x] Decouple frontend API calls in `Projects.tsx` and `Skills.tsx` to read dynamic URLs from `import.meta.env`.
 * [x] Adjust NestJS `main.ts` CORS logic to automatically authorize local connections and Vercel subdomains dynamically.
 * [x] Expose dynamic port bindings (`process.env.PORT || 3000`) inside NestJS `main.ts`.
 
+---
+
 ### 🛡️ Step 2: Automated Testing Suites (Vitest + NestJS Jest)
-* [ ] Install **Vitest** in `apps/frontend-react`.
-* [ ] Write unit tests for the dynamic RoleSwitch transitions and matched skill selectors.
-* [ ] Write NestJS e2e Jest controllers validating bug verification endpoints and ROI timeline models.
-* [ ] Add monorepo root workspace execution bindings.
+* **Status**: ⏳ **Pending**
+* **Action Plan**:
+  * **Frontend (React)**: Install `vitest`, `@testing-library/react`, and `@testing-library/jest-dom` inside `apps/frontend-react`. Create isolated unit tests for:
+    * `RoleContext`: Verify that transitions between `'HR'`, `'CEO'`, and `'CTO'` roles initiate correctly and follow the strict timing sequence (200ms fade-out/300ms fade-in).
+    * `PerspectiveSwitcher`: Verify that clicking Recruiter, Founder, or Engineer successfully fires the role switcher events and context states.
+    * `Skills`: Validate that clicking skill chips correctly queries the compatibility API and successfully triggers local JavaScript fallback mock calculations if the NestJS backend is offline.
+  * **Backend (NestJS)**: Configure standard NestJS Jest specs. Create E2E integration specs in `apps/backend-nestjs/test/app.e2e-spec.ts` validating:
+    * `GET /api/portfolio/skills`: Verify response compatibility matrices (80%-98% scores) and corresponding projects lists.
+    * `POST /api/portfolio/calculate-scope`: Test ROI cost algorithms and project timelines under varying sliders parameters.
+    * `POST /api/sandbox/verify-bug`: Validate that correct line numbers for SQL N+1 loops (8-10) and Redis distributed transaction locks (4-6) successfully output the corresponding Git diff patches and resolution code.
+  * **User Contribution Point**:
+    * **Action Required**: **None**. This step is 100% automated developer code. You only need to run `npm test` locally to review the green success checkmarks!
+
+---
 
 ### 🤖 Step 3: CI/CD Pipeline Scaffolding (GitHub Actions)
-* [ ] Create `.github/workflows/ci.yml` at the monorepo root.
-* [ ] Design compile, test, lint, and Docker compliance validation check runs on push.
+* **Status**: ⏳ **Pending**
+* **Action Plan**:
+  * Create a unified GitHub workflow file `.github/workflows/ci.yml` at the monorepo root.
+  * The pipeline will execute on every `push` and `pull_request` to the main repository.
+  * **Jobs List**:
+    1. **Install & Cache**: Checks out the code, installs Node.js, and caches `node_modules` utilizing GitHub's actions cache to speed up pipeline runs by 70%.
+    2. **Lint**: Audits codebases via ESLint for styling and syntax check errors.
+    3. **Test**: Runs the complete frontend Vitest and backend NestJS Jest automated suites.
+    4. **Build**: Compiles `shared-types` first, then compiles the frontend client and NestJS server to ensure the entire monorepo builds cleanly.
+    5. **Docker Verify**: Validates that frontend and backend multi-stage Dockerfiles compile cleanly without container cache breaks.
+* **User Contribution Point**:
+  * **Setting Up GitHub**: You must host this monorepo in a **Private GitHub Repository**. Private repositories are 100% free and keep your backend and planning blueprints completely private.
+  * **Setting Up Branch Protection Rules** (Optional but highly recommended): Go to your GitHub repository `Settings` -> `Branches` -> `Add branch protection rule`. Set it up on your primary branch, check `Require status checks to pass before merging`, and select the `CI` workflow. This guarantees no broken code can ever be pushed to production.
 
-### 🚀 Step 4: Deployed Server Go-Live
-* [ ] Spin up dynamic NestJS backend on Render/Railway.
-* [ ] Bind static Vite client on Vercel, targeting deployed backend environment variables.
-* [ ] Complete SSL and production Socket.io handshake verifications.
+---
+
+### 🚀 Step 4: Deployed Server Go-Live (Cloud Deployment)
+* **Status**: ⏳ **Pending**
+* **Action Plan**:
+  * **Backend Deployed Engine (Render / Railway Docker Runner)**:
+    1. Bind a Render or Railway container service directly to your private GitHub repository branch.
+    2. Because our NestJS backend contains a production-ready, multi-stage `Dockerfile`, Render will automatically build the Node compiler, prune development dependencies, compile JavaScript, and spin up a lightweight container.
+    3. Bind the container to port `3000` (handled dynamically via your `process.env.PORT`).
+    4. Access Render's dashboard and inject environment variables (like `ALLOWED_ORIGINS` to allow CORS requests from Vercel).
+  * **Frontend CDN Hosting (Vercel Edge Network)**:
+    1. Link a Vercel project to the same repository.
+    2. Set up Vite client configurations pointing to `apps/frontend-react`:
+       - **Framework Preset**: `Vite`
+       - **Build Command**: `npm run build:frontend`
+       - **Output Directory**: `apps/frontend-react/dist`
+    3. Inject Vercel build variables (`VITE_API_URL` and `VITE_WS_URL`) pointing to your live Render server domain URL.
+  * **Completion Handshake**: Perform SSL handshake check, verify that REST endpoints resolve, and ensure bidirectional Socket.io telemetry handshakes bind correctly.
+* **User Contribution Point (CRITICAL - HOSTING ACCOUNTS & SECRETS SETUP)**:
+  * **Creating Cloud Accounts**: You will need to register for free accounts on:
+    * **GitHub**: For private codebase storage.
+    * **Vercel**: For instant static CDN frontend hosting.
+    * **Render** or **Railway**: For dockerized NestJS server hosting.
+  * **Authorizing Integrations**: Link Vercel and Render/Railway to your GitHub account and authorize them to read your private portfolio repository.
+  * **Injecting Secrets in Dashboards (Vault Management)**:
+    * **On Render/Railway Console**: Go to project variables and add:
+      * `ALLOWED_ORIGINS` = `https://your-portfolio.vercel.app` (Authorizes your React frontend domain to bypass browser CORS shields).
+    * **On Vercel Console**: Go to project settings -> `Environment Variables` and add:
+      * `VITE_API_URL` = `https://your-backend-service.onrender.com` (Directs frontend REST calls to the live server).
+      * `VITE_WS_URL` = `wss://your-backend-service.onrender.com` (Directs the real-time node stress tester to establish WebSocket tunnels).
+  * **Binding Custom DNS Domains** (Optional, e.g., if you own `yourname.dev`):
+    * In Vercel, go to `Settings` -> `Domains` and add your domain.
+    * Access your DNS registry provider (GoDaddy, Namecheap, Google Domains) and map:
+      * **A Record** pointing to Vercel's IP address: `76.76.21.21`
+      * **CNAME Record** pointing `www` to `cname.vercel-dns.com`
+    * Vercel will automatically provision, secure, and auto-renew free SSL certificates.

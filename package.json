@@ -10,11 +10,15 @@
     "dev:frontend": "npm run dev --workspace=apps/frontend-react",
     "dev:backend": "npm run start:dev --workspace=apps/backend-nestjs",
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "build:shared": "npm run build --workspace=shared-types",
     "build:frontend": "npm run build --workspace=apps/frontend-react",
     "build:backend": "npm run build --workspace=apps/backend-nestjs",
-    "build": "npm run build --workspace=apps/frontend-react && npm run build --workspace=apps/backend-nestjs"
+    "build": "npm run build:shared && npm run build:frontend && npm run build:backend"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "shared-types": "^1.0.0"
   }
 }
