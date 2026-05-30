@@ -180,6 +180,17 @@ All portfolio content is centralized here. No hardcoded text in components.
 - [x] **Step 1: Security Hardening & Environment Isolation** — Deactivated sourcemaps, secured `.env` ignores, established empty templates, and decoupled dynamic client/server process variable parsing.
 - [x] **Step 2: Automated Testing Suites** — Configured Vitest client specifications and Jest E2E controller integration gates, verifying 20/20 passing specs across both workspaces.
 - [x] **Step 3: CI/CD Pipeline Scaffolding (GitHub Actions)** — Built a cached, dual-job GitHub Actions workflow (`.github/workflows/ci.yml`) automating Node install caching, frontend ESLint compliance audits, unified tests, full workspace builds, and backend/frontend Dockerfile compilation dry-runs.
+- [x] **Step 4: Deployed Server Go-Live (Cloud Deployment)** — Deployed NestJS backend inside multi-stage Docker container on Render, configured monorepo-optimized Vite client builds on Vercel Edge networks, and whitelisted secure cross-domain CORS REST and WebSocket handshakes.
+
+### 🚀 Phase 4: Persona-Based Onboarding Gateway & Dynamic Link Routing (Proposed / Pending)
+- [ ] **Welcome Onboarding Screen** — Design a premium glassmorphic overlay for first-time visitors prompting: *"Welcome. How would you like to explore Mohammed's catalog today?"*
+- [ ] **Persona-Outcome Mapping** — Display three cards mapping outcomes to code layouts:
+  1. *Recruit software talent* ➔ Loads **HR / Software Engineer** timeline and CV download.
+  2. *Evaluate timelines & ROI* ➔ Loads **CEO / Founder** sliders and metrics.
+  3. *Audit architectures & sandbox* ➔ Loads **CTO / Technical Lead** WebSocket panels and debuggers.
+- [ ] **LocalStorage Choice Retention** — Save selection to browser storage to bypass the onboarding gateway on subsequent visits automatically.
+- [ ] **Dynamic URL Parameter Routing (`?ref=`)** — Parse URL query strings on load (e.g. `?ref=hr` or `?ref=cto`) to bypass onboarding and instantly render custom-tailored layouts for specific hiring outreach emails.
+- [ ] **Subtle View-Toggle UI** — Integrate a minimized dropdown/link inside the footer/header to allow recruiters to easily explore alternative perspectives.
 
 ---
 
