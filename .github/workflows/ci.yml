@@ -1,0 +1,77 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  test-and-build:
+    name: Test and Build Workspaces
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache Node Modules
+        uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Shared Types
+        run: npm run build:shared
+
+      - name: Audit Frontend Lint Rules
+        run: npm run lint:frontend
+
+      - name: Run Unified Test Suites
+        run: npm test
+
+      - name: Compile Full-Stack Workspaces
+        run: npm run build
+
+  docker-verify:
+    name: Verify Docker Container Build Compliance
+    runs-on: ubuntu-latest
+    needs: test-and-build
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Verify Backend Docker Build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/backend-nestjs/Dockerfile
+          push: false
+          tags: portfolio-backend:latest
+
+      - name: Verify Frontend Docker Build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/frontend-react/Dockerfile
+          push: false
+          tags: portfolio-frontend:latest

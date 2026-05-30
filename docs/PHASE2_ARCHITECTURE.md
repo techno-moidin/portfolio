@@ -152,3 +152,39 @@ A production-ready container structure orchestrates both services cleanly:
   - Multi-stage builder compiling NestJS TypeScript source.
   - Uses `npm ci --omit=dev` to prune dev dependencies, building a lightweight Node runtime container.
 - **`docker-compose.yml`:** Coordinates frontend (port 80) and backend (port 3000) services under a single networking layer, ready for instant hosting.
+
+---
+
+## 🧪 8. Full-Stack Automated Testing Framework (Vitest & Jest)
+To maintain absolute stability across future code modifications, we have integrated a unified testing layer:
+
+### A. Frontend Unit specs (`apps/frontend-react/src/test`)
+* **Framework**: **Vitest** + **jsdom** + **React Testing Library**.
+* **Configurations**: [vitest.config.ts](file:///c:/Users/shahe/shaheer/portfolio/MSM_portfolio/portfolio/apps/frontend-react/vitest.config.ts) and [setup.ts](file:///c:/Users/shahe/shaheer/portfolio/MSM_portfolio/portfolio/apps/frontend-react/src/test/setup.ts) (which mocks browser Intersections and Animations).
+* **Test Cases**:
+  * [RoleContext.spec.tsx](file:///c:/Users/shahe/shaheer/portfolio/MSM_portfolio/portfolio/apps/frontend-react/src/test/RoleContext.spec.tsx): Verifies timing sequences (200ms fade-out, 300ms fade-in) using virtual fake timers.
+  * [Skills.spec.tsx](file:///c:/Users/shahe/shaheer/portfolio/MSM_portfolio/portfolio/apps/frontend-react/src/test/Skills.spec.tsx): Verifies skill selections, API requests mock integration, and try-catch offline local failovers.
+
+### B. Backend E2E Integration specs (`apps/backend-nestjs/test`)
+* **Framework**: **Jest** + **ts-jest** + **Supertest**.
+* **Configurations**: [jest.config.js](file:///c:/Users/shahe/shaheer/portfolio/MSM_portfolio/portfolio/apps/backend-nestjs/jest.config.js).
+* **Test Cases**:
+  * [app.e2e-spec.ts](file:///c:/Users/shahe/shaheer/portfolio/MSM_portfolio/portfolio/apps/backend-nestjs/test/app.e2e-spec.ts):
+    * CORS security checks (Localhost and Vercel domains are authorized, untrusted headers are blocked).
+    * Dynamic PDF CV stream byte verification (`GET /api/portfolio/resume`).
+    * Skills compat matrices scoring (`GET /api/portfolio/skills`).
+    * CEO cost projection calculations (`POST /api/portfolio/calculate-scope`).
+    * CTO Sandbox line puzzle debugger (`POST /api/sandbox/verify-bug`).
+
+### C. Execution Commands
+Unified monorepo test scripts are registered in the root [package.json](file:///c:/Users/shahe/shaheer/portfolio/package.json):
+```bash
+# 1. Run all test suites (Frontend Vitest + Backend E2E Jest)
+npm test
+
+# 2. Run React frontend unit tests only
+npm run test:frontend
+
+# 3. Run NestJS backend E2E tests only
+npm run test:backend
+```

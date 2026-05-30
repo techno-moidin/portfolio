@@ -7,22 +7,10 @@ export function Hero() {
 
   // ── Dynamic Content Matrix ──────────────────────────────────────────────────
   
-  let eyebrow = name;
-  let headline: React.ReactNode = (
-    <>
-      Full Stack Web Developer crafting{' '}
-      <span className="text-primary italic shimmer-text inline-block">
-        high-performance
-      </span>
-      ,{' '}
-      <span className="text-primary italic shimmer-text inline-block">
-        scalable
-      </span>{' '}
-      applications.
-    </>
-  );
-  let subheading = about;
-  let stats: React.ReactNode = null;
+  let eyebrow: string;
+  let headline: React.ReactNode;
+  let subheading: string;
+  let stats: React.ReactNode;
 
   if (role === 'HR') {
     eyebrow = `${name} | Software Engineer`;

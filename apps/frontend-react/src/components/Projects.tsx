@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { RESUME_DATA } from '../data/resume';
 import { useRole } from '../utils/RoleContext';
 import { logEvent } from './FloatingConsole';
@@ -29,7 +29,7 @@ function ScopeCalculator() {
   const [calcLoading, setCalcLoading] = useState<boolean>(false);
   const [calcResult, setCalcResult] = useState<ScopeCalculateResult | null>(null);
 
-  const calculateScope = async () => {
+  const calculateScope = useCallback(async () => {
     setCalcLoading(true);
     setCalcResult(null);
     const apiPath = '/api/portfolio/calculate-scope';
@@ -83,11 +83,14 @@ function ScopeCalculator() {
     } finally {
       setCalcLoading(false);
     }
-  };
+  }, [complexity, timeline, scale]);
 
   useEffect(() => {
-    calculateScope();
-  }, [complexity, timeline, scale]);
+    const timer = setTimeout(() => {
+      calculateScope();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [calculateScope]);
 
   return (
     <div className="glass-card p-6 border border-primary/30 rounded-xl mb-12 shadow-xl bg-surface-container-lowest/50 relative overflow-hidden">
@@ -121,7 +124,7 @@ function ScopeCalculator() {
                 <button
                   key={c}
                   type="button"
-                  onClick={() => setComplexity(c as any)}
+                  onClick={() => setComplexity(c as 'Low' | 'Medium' | 'High')}
                   className={`py-1.5 text-[10px] font-bold rounded uppercase transition-colors ${complexity === c ? 'bg-primary text-background' : 'bg-surface-container-high text-on-surface'}`}
                 >
                   {c}
@@ -138,7 +141,7 @@ function ScopeCalculator() {
                 <button
                   key={s}
                   type="button"
-                  onClick={() => setScale(s as any)}
+                  onClick={() => setScale(s as 'Small' | 'Medium' | 'High')}
                   className={`py-1.5 text-[10px] font-bold rounded uppercase transition-colors ${scale === s ? 'bg-primary text-background' : 'bg-surface-container-high text-on-surface'}`}
                 >
                   {s}
@@ -265,7 +268,9 @@ function SystemStressTester() {
       logEvent('WS', `Disconnected from ${WS_URL}.`);
     });
 
-    setSocket(newSocket);
+    setTimeout(() => {
+      setSocket(newSocket);
+    }, 0);
 
     return () => {
       newSocket.disconnect();

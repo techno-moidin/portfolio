@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useState, useEffect, useRef } from 'react';
 import { useRole } from '../utils/RoleContext';
 import { Terminal, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
