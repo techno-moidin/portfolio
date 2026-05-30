@@ -40,4 +40,4 @@ COPY --from=builder /usr/src/app/apps/backend-nestjs/dist ./apps/backend-nestjs/
 
 EXPOSE 3000
 
-CMD ["node", "apps/backend-nestjs/dist/main"]
+CMD ["node", "apps/backend-nestjs/dist/src/main"]
