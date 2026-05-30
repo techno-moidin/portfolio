@@ -1,5 +1,7 @@
 import fallbackResumeUrl from '../assets/resume/shaheer_cv_full.pdf';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 /**
  * resumeApi.ts
  *
@@ -39,7 +41,7 @@ export async function fetchAndDownloadResume(
   filename = 'Mohammed_Shaheer_Moidin_Resume.pdf'
 ): Promise<ResumeDownloadResult> {
   try {
-    const response = await fetch('/api/portfolio/resume', {
+    const response = await fetch(`${API_URL}/api/portfolio/resume`, {
       method: 'GET',
       headers: {
         Accept: 'application/pdf',
