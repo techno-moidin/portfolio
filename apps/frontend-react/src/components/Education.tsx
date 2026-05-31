@@ -32,31 +32,33 @@ export function Education() {
 
         {/* Right — degree card */}
         <div className="md:w-2/3">
-          <div className="glass-card rounded-2xl p-6 sm:p-8 md:p-10 flex flex-col sm:flex-row gap-6 items-start group">
+          <div className="glass-card rounded-2xl p-6 sm:p-8 md:p-10 flex flex-col gap-6 group">
 
-            {/* Icon badge */}
-            <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-              <span className="material-symbols-outlined text-primary text-[28px]" aria-hidden="true">
-                school
-              </span>
-            </div>
-
-            {/* Details */}
-            <div className="flex-1 w-full animate-fadeIn flex flex-col items-start text-left">
-              <div className="flex items-center justify-between w-full gap-4 mb-2">
+            {/* Top Row: Icon badge + Date + Graduated badge */}
+            <div className="flex items-center justify-between w-full gap-4">
+              <div className="flex items-center gap-3">
+                {/* Icon badge */}
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-primary text-[24px]" aria-hidden="true">
+                    school
+                  </span>
+                </div>
                 <span className="font-label-caps text-primary uppercase tracking-widest text-[11px] text-left">
                   {education.year}
                 </span>
-                
-                {/* Graduated badge */}
-                <div className="flex-shrink-0">
-                  <span className="inline-flex items-center gap-1.5 bg-primary/10 border border-primary/20 text-primary font-label-caps text-[11px] px-3 py-1.5 rounded-full uppercase tracking-wider">
-                    <span className="material-symbols-outlined text-[14px]" aria-hidden="true">verified</span>
-                    Graduated
-                  </span>
-                </div>
               </div>
-              
+
+              {/* Graduated badge */}
+              <div className="flex-shrink-0">
+                <span className="inline-flex items-center gap-1.5 bg-primary/10 border border-primary/20 text-primary font-label-caps text-[11px] px-3 py-1.5 rounded-full uppercase tracking-wider">
+                  <span className="material-symbols-outlined text-[14px]" aria-hidden="true">verified</span>
+                  Graduated
+                </span>
+              </div>
+            </div>
+
+            {/* Bottom Row: Full-width Details */}
+            <div className="w-full animate-fadeIn flex flex-col items-start text-left gap-1">
               <h3 className="font-headline-md text-[22px] md:text-[24px] font-bold text-on-surface mb-1 text-left w-full">
                 {education.degree}
               </h3>
