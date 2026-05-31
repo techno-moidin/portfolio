@@ -42,6 +42,17 @@ function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Force scroll recalculation when the onboarding modal is dismissed
+  useEffect(() => {
+    if (onboardingCompleted) {
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+        window.scrollBy(0, 1);
+        window.scrollBy(0, -1);
+      }, 150);
+    }
+  }, [onboardingCompleted]);
+
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
@@ -50,7 +61,7 @@ function App() {
           entry.target.classList.add('active');
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.01 });
 
     revealElements.forEach(el => revealObserver.observe(el));
 

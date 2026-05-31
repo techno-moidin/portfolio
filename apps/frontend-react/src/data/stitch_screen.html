@@ -191,67 +191,69 @@
 <div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- ── ONBOARDING WELCOME GATEWAY ── -->
-<div id="onboardingGateway" class="fixed inset-0 z-[100] flex items-center justify-center bg-background/25 backdrop-blur-[6px] transition-all duration-500 ease-in-out">
-    <div class="w-full max-w-4xl mx-4 glass-card p-8 sm:p-12 rounded-3xl relative overflow-hidden shadow-2xl animate-fadeIn max-h-[90vh] overflow-y-auto">
-        <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
-        <div class="text-center flex flex-col items-center gap-2 max-w-2xl mx-auto mb-8">
-            <span class="font-label-caps text-primary text-[11px] uppercase tracking-widest">MOHAMMED SHAHEER MOIDIN</span>
-            <h2 class="font-headline-lg text-[32px] sm:text-[40px] font-bold text-on-surface leading-tight">
-                Welcome. How would you like to explore Mohammed's engineering catalog today?
-            </h2>
-            <p class="font-body-md text-on-surface-variant/80 mt-2 text-[15px]">
-                Select a tailored perspective below. The interface, technical telemetry, and highlights will dynamically adapt to your outcome focus.
-            </p>
-        </div>
+<div id="onboardingGateway" class="fixed inset-0 z-[100] overflow-y-auto bg-background/25 backdrop-blur-[6px] transition-all duration-500 ease-in-out">
+    <div class="min-h-full w-full flex justify-center items-start sm:items-center p-4">
+        <div class="w-full max-w-4xl glass-card p-6 sm:p-10 rounded-3xl relative overflow-hidden shadow-2xl animate-fadeIn flex flex-col items-center gap-6">
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
+            <div class="text-center flex flex-col items-center gap-2 max-w-2xl mx-auto mb-8">
+                <span class="font-label-caps text-primary text-[11px] uppercase tracking-widest">MOHAMMED SHAHEER MOIDIN</span>
+                <h2 class="font-headline-lg text-[32px] sm:text-[40px] font-bold text-on-surface leading-tight">
+                    Welcome. How would you like to explore Mohammed's engineering catalog today?
+                </h2>
+                <p class="font-body-md text-on-surface-variant/80 mt-2 text-[15px]">
+                    Select a tailored perspective below. The interface, technical telemetry, and highlights will dynamically adapt to your outcome focus.
+                </p>
+            </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- HR Perspective -->
-            <button onclick="selectPerspective('HR')" class="glass-card p-6 rounded-2xl border border-outline-variant/60 hover:border-primary/50 text-left flex flex-col gap-4 group cursor-pointer transition-all duration-300">
-                <div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/20">
-                    <span class="material-symbols-outlined text-[20px]">badge</span>
-                </div>
-                <div>
-                    <h3 class="font-headline-sm text-[16px] font-bold text-on-surface group-hover:text-primary transition-colors">Software Engineer</h3>
-                    <p class="font-body-md text-on-surface-variant text-[13px] mt-1 leading-relaxed">
-                        Assess full-stack versatility, read clean timeline summaries, and download the verified PDF resume.
-                    </p>
-                </div>
-                <div class="mt-auto pt-2 flex items-center gap-1.5 text-primary text-xs font-label-caps uppercase">
-                    Launch Recruiter View <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-                </div>
-            </button>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- HR Perspective -->
+                <button onclick="selectPerspective('HR')" class="glass-card p-6 rounded-2xl border border-outline-variant/60 hover:border-primary/50 text-left flex flex-col gap-4 group cursor-pointer transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary border border-secondary/20">
+                        <span class="material-symbols-outlined text-[20px]">badge</span>
+                    </div>
+                    <div>
+                        <h3 class="font-headline-sm text-[16px] font-bold text-on-surface group-hover:text-primary transition-colors">Software Engineer</h3>
+                        <p class="font-body-md text-on-surface-variant text-[13px] mt-1 leading-relaxed">
+                            Assess full-stack versatility, read clean timeline summaries, and download the verified PDF resume.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-2 flex items-center gap-1.5 text-primary text-xs font-label-caps uppercase">
+                        Launch Recruiter View <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                    </div>
+                </button>
 
-            <!-- CEO Perspective -->
-            <button onclick="selectPerspective('CEO')" class="glass-card p-6 rounded-2xl border border-outline-variant/60 hover:border-primary/50 text-left flex flex-col gap-4 group cursor-pointer transition-all duration-300">
-                <div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary border border-tertiary/20">
-                    <span class="material-symbols-outlined text-[20px]">insights</span>
-                </div>
-                <div>
-                    <h3 class="font-headline-sm text-[16px] font-bold text-on-surface group-hover:text-primary transition-colors">Product Manager</h3>
-                    <p class="font-body-md text-on-surface-variant text-[13px] mt-1 leading-relaxed">
-                        Evaluate project ROI scope projections, timeline metrics, and client catalog achievements.
-                    </p>
-                </div>
-                <div class="mt-auto pt-2 flex items-center gap-1.5 text-primary text-xs font-label-caps uppercase">
-                    Launch Founder View <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-                </div>
-            </button>
+                <!-- CEO Perspective -->
+                <button onclick="selectPerspective('CEO')" class="glass-card p-6 rounded-2xl border border-outline-variant/60 hover:border-primary/50 text-left flex flex-col gap-4 group cursor-pointer transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary border border-tertiary/20">
+                        <span class="material-symbols-outlined text-[20px]">insights</span>
+                    </div>
+                    <div>
+                        <h3 class="font-headline-sm text-[16px] font-bold text-on-surface group-hover:text-primary transition-colors">Product Manager</h3>
+                        <p class="font-body-md text-on-surface-variant text-[13px] mt-1 leading-relaxed">
+                            Evaluate project ROI scope projections, timeline metrics, and client catalog achievements.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-2 flex items-center gap-1.5 text-primary text-xs font-label-caps uppercase">
+                        Launch Founder View <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                    </div>
+                </button>
 
-            <!-- CTO Perspective -->
-            <button onclick="selectPerspective('CTO')" class="glass-card p-6 rounded-2xl border border-outline-variant/60 hover:border-primary/50 text-left flex flex-col gap-4 group cursor-pointer transition-all duration-300">
-                <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
-                    <span class="material-symbols-outlined text-[20px]">terminal</span>
-                </div>
-                <div>
-                    <h3 class="font-headline-sm text-[16px] font-bold text-on-surface group-hover:text-primary transition-colors">Technical Lead</h3>
-                    <p class="font-body-md text-on-surface-variant text-[13px] mt-1 leading-relaxed">
-                        Audit backend microservice configurations, database architectures, and run sandbox debugger mocks.
-                    </p>
-                </div>
-                <div class="mt-auto pt-2 flex items-center gap-1.5 text-primary text-xs font-label-caps uppercase">
-                    Launch Technical View <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-                </div>
-            </button>
+                <!-- CTO Perspective -->
+                <button onclick="selectPerspective('CTO')" class="glass-card p-6 rounded-2xl border border-outline-variant/60 hover:border-primary/50 text-left flex flex-col gap-4 group cursor-pointer transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+                        <span class="material-symbols-outlined text-[20px]">terminal</span>
+                    </div>
+                    <div>
+                        <h3 class="font-headline-sm text-[16px] font-bold text-on-surface group-hover:text-primary transition-colors">Technical Lead</h3>
+                        <p class="font-body-md text-on-surface-variant text-[13px] mt-1 leading-relaxed">
+                            Audit backend microservice configurations, database architectures, and run sandbox debugger mocks.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-2 flex items-center gap-1.5 text-primary text-xs font-label-caps uppercase">
+                        Launch Technical View <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                    </div>
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -408,7 +410,7 @@
         </section>
 
         <!-- Experience timeline section -->
-        <section class="py-section-gap max-w-container-max mx-auto px-gutter reveal" id="experience text-left">
+        <section class="py-section-gap max-w-container-max mx-auto px-gutter reveal text-left" id="experience">
             <div class="mb-16 text-left">
                 <h2 class="font-headline-lg text-[36px] md:text-[48px] font-bold mb-4 text-on-surface">Professional Journey</h2>
                 <p class="font-body-lg text-on-surface-variant max-w-2xl">
@@ -703,7 +705,7 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.01 });
         revealElements.forEach(el => revealObserver.observe(el));
 
         // Count-up Animation for Stats
@@ -752,6 +754,13 @@
         // Show main content wrapper
         const main = document.getElementById('mainContent');
         main.classList.remove('blur-[6px]', 'pointer-events-none', 'select-none', 'h-screen', 'overflow-hidden');
+
+        // Force browser scroll-bounds recalculation to trigger active viewport entry animations
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+            window.scrollBy(0, 1);
+            window.scrollBy(0, -1);
+        }, 150);
 
         // Write selection to LocalStorage
         localStorage.setItem('onboarding_completed', 'true');
