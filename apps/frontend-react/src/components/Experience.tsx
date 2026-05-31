@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { RESUME_DATA } from '../data/resume';
 
 /**
@@ -15,48 +15,10 @@ import { RESUME_DATA } from '../data/resume';
  *  - Scroll-reveal: each .glass-card is observed individually and cascades in.
  */
 export function Experience() {
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const total = RESUME_DATA.experience.length;
   const lastIndex = total - 1;
-
-  /* ── Per-card scroll-reveal (staggered) ── */
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    cardRefs.current.forEach((card, i) => {
-      if (!card) return;
-
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(24px)';
-      card.style.transition = [
-        `opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${i * 120}ms`,
-        `transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${i * 120}ms`,
-      ].join(', ');
-
-      const obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              (entry.target as HTMLElement).style.cssText = [
-                'opacity: 1',
-                'transform: translateY(0)',
-                `transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${i * 120}ms, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${i * 120}ms`,
-              ].join('; ');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.08 }
-      );
-
-      obs.observe(card);
-      observers.push(obs);
-    });
-
-    return () => observers.forEach((obs) => obs.disconnect());
-  }, []);
 
   /* ── Fill progress: 0 → 1 based on hovered card index ── */
   const fillScale =
@@ -138,9 +100,8 @@ export function Experience() {
                   ].join(' ')}
                 />
 
-                {/* ── Glass card (ref for scroll-reveal) ── */}
+                {/* ── Glass card ── */}
                 <div
-                  ref={(el) => { cardRefs.current[index] = el; }}
                   className={[
                     'glass-card p-stack-lg rounded-xl',
                     isLast ? 'border-dashed' : '',
