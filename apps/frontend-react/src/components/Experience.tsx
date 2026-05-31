@@ -146,37 +146,36 @@ export function Experience() {
                     isLast ? 'border-dashed' : '',
                   ].join(' ')}
                 >
-                  {/* Header: company info + tech chips */}
-                  <div className="flex flex-col md:flex-row md:items-start justify-between mb-stack-md gap-4">
-                    <div className="flex-shrink-0">
-                      <span
-                        className={`font-label-caps mb-2 block uppercase tracking-widest ${
-                          isActive ? 'text-primary' : 'text-on-surface-variant'
-                        }`}
-                      >
-                        {exp.period}
-                      </span>
-                      <h2 className="font-headline-md text-[24px] font-bold text-on-surface">
-                        {exp.company}
-                      </h2>
-                      <p className="font-code-md text-code-md text-primary font-bold">
-                        {exp.role}
-                      </p>
-                    </div>
-
-                    {exp.technologies.length > 0 && (
-                      <div className="flex flex-wrap gap-2 md:justify-end max-w-full md:max-w-[60%]">
-                        {exp.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="tech-chip px-3 py-1 rounded font-code-md text-xs"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+                  {/* Header: company info + period */}
+                  <div className="mb-4">
+                    <span
+                      className={`font-label-caps mb-2 block uppercase tracking-widest text-[11px] ${
+                        isActive ? 'text-primary' : 'text-on-surface-variant'
+                      }`}
+                    >
+                      {exp.period}
+                    </span>
+                    <h2 className="font-headline-md text-[22px] md:text-[24px] font-bold text-on-surface leading-tight mb-1">
+                      {exp.company}
+                    </h2>
+                    <p className="font-code-md text-code-md text-primary font-bold">
+                      {exp.role}
+                    </p>
                   </div>
+
+                  {/* Technologies Chips aligned horizontally beneath header */}
+                  {exp.technologies.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {exp.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="tech-chip px-2.5 py-1 rounded font-code-md text-[10px] md:text-[11px] tracking-wide"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Description bullets */}
                   <div className="space-y-4 mt-stack-md">

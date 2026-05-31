@@ -182,15 +182,15 @@ All portfolio content is centralized here. No hardcoded text in components.
 - [x] **Step 3: CI/CD Pipeline Scaffolding (GitHub Actions)** — Built a cached, dual-job GitHub Actions workflow (`.github/workflows/ci.yml`) automating Node install caching, frontend ESLint compliance audits, unified tests, full workspace builds, and backend/frontend Dockerfile compilation dry-runs.
 - [x] **Step 4: Deployed Server Go-Live (Cloud Deployment)** — Deployed NestJS backend inside multi-stage Docker container on Render, configured monorepo-optimized Vite client builds on Vercel Edge networks, and whitelisted secure cross-domain CORS REST and WebSocket handshakes.
 
-### 🚀 Phase 4: Persona-Based Onboarding Gateway & Dynamic Link Routing (Proposed / Pending)
-- [ ] **Welcome Onboarding Screen** — Design a premium glassmorphic overlay for first-time visitors prompting: *"Welcome. How would you like to explore Mohammed's catalog today?"*
-- [ ] **Persona-Outcome Mapping** — Display three cards mapping outcomes to code layouts:
-  1. *Recruit software talent* ➔ Loads **HR / Software Engineer** timeline and CV download.
-  2. *Evaluate timelines & ROI* ➔ Loads **CEO / Founder** sliders and metrics.
-  3. *Audit architectures & sandbox* ➔ Loads **CTO / Technical Lead** WebSocket panels and debuggers.
-- [ ] **LocalStorage Choice Retention** — Save selection to browser storage to bypass the onboarding gateway on subsequent visits automatically.
-- [ ] **Dynamic URL Parameter Routing (`?ref=`)** — Parse URL query strings on load (e.g. `?ref=hr` or `?ref=cto`) to bypass onboarding and instantly render custom-tailored layouts for specific hiring outreach emails.
-- [ ] **Subtle View-Toggle UI** — Integrate a minimized dropdown/link inside the footer/header to allow recruiters to easily explore alternative perspectives.
+### 🚀 Phase 4: Persona-Based Onboarding Gateway & Dynamic Link Routing (Completed)
+- [x] **Welcome Onboarding Screen** — Designed a premium glassmorphic overlay for first-time visitors prompting: *"Welcome. How would you like to explore Mohammed's engineering catalog today?"* softly blurring the particle canvas and layouts behind it.
+- [x] **Persona-Outcome Mapping** — Displayed three interactive cards mapping outcome intents to engine perspectives:
+  1. *Recruit software talent* ➔ Loads **HR / Software Engineer** timeline, skills, and CV actions.
+  2. *Evaluate timelines & ROI* ➔ Loads **CEO / Founder** slides, ROI budgets, and charts.
+  3. *Audit architectures & sandbox* ➔ Loads **CTO / Technical Lead** WebSocket panels and code debuggers.
+- [x] **LocalStorage Choice Retention** — Saves user selected role to local storage (keys: `role_perspective` and `onboarding_completed`) to bypass the onboarding overlay on subsequent visits automatically.
+- [x] **Dynamic URL Parameter Routing (`?ref=`)** — Parses query strings on initialization (e.g. `?ref=hr`, `?ref=cto`, `?ref=ceo`, `?ref=recruiter`, `?ref=founder`, `?ref=engineer`) to instantly bypass onboarding and render the custom perspective directly.
+- [x] **Subtle View-Toggle UI** — Integrated a minimized drop-down perspective switcher `"Change View: ..."` in the Navbar and inline micro-links in the Footer, removing the large role switcher buttons from the primary view.
 
 ---
 
