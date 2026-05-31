@@ -89,6 +89,22 @@ export class TelemetryGateway implements OnGatewayConnection, OnGatewayDisconnec
     this.broadcastInfraUpdate();
   }
 
+  // 4 ── Reset to Baseline ────────────────────────────────────────────────────
+  @SubscribeMessage('resetBaseline')
+  handleResetBaseline(client: Socket) {
+    this.currentTraffic = 100;
+    this.isRedisEnabled = false;
+    this.workerNodeCount = 1;
+    this.broadcastInfraUpdate();
+  }
+
+  // 5 ── Reset Nodes ──────────────────────────────────────────────────────────
+  @SubscribeMessage('resetNodes')
+  handleResetNodes(client: Socket) {
+    this.workerNodeCount = 1;
+    this.broadcastInfraUpdate();
+  }
+
   private broadcastInfraUpdate() {
     this.server.emit('infraState', {
       redisEnabled: this.isRedisEnabled,

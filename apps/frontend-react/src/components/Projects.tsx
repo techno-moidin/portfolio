@@ -327,6 +327,22 @@ function SystemStressTester() {
     }
   };
 
+  const resetTrafficLocal = () => {
+    setTraffic(100);
+    logEvent('LIFECYCLE', 'Restored ingress traffic baseline: 100 req/s');
+    if (socket && wsConnected) {
+      socket.emit('adjustTraffic', { traffic: 100 });
+    }
+  };
+
+  const resetNodesLocal = () => {
+    setWorkerNodes(1);
+    logEvent('LIFECYCLE', 'Restored node cluster baseline: 1 Active Node');
+    if (socket && wsConnected) {
+      socket.emit('resetNodes');
+    }
+  };
+
   return (
     <div className="glass-card p-6 border border-sky-500/30 rounded-xl mb-12 shadow-xl bg-surface-container-lowest/50 animate-fadeIn">
       
@@ -347,8 +363,18 @@ function SystemStressTester() {
           
           {/* Traffic Volume Slider */}
           <div className="flex flex-col gap-2.5">
-            <div className="flex justify-between text-xs font-bold text-on-surface-variant font-mono">
-              <span>INGRESS TRAFFIC:</span>
+            <div className="flex justify-between items-center text-xs font-bold text-on-surface-variant font-mono">
+              <span className="flex items-center gap-1.5 select-none">
+                INGRESS TRAFFIC:
+                <button
+                  type="button"
+                  onClick={resetTrafficLocal}
+                  title="Reset Ingress Traffic to 100 req/s"
+                  className="text-on-surface-variant/40 hover:text-sky-400 hover:scale-110 active:scale-95 transition-all p-0.5 rounded cursor-pointer flex items-center justify-center"
+                >
+                  <RefreshCw size={11} />
+                </button>
+              </span>
               <span className="text-sky-400">{traffic.toLocaleString()} req/s</span>
             </div>
             <input
@@ -386,6 +412,15 @@ function SystemStressTester() {
               className="w-full py-2.5 bg-sky-500 hover:bg-sky-400 text-black font-mono text-[10px] font-bold uppercase tracking-wider rounded transition-all duration-200 border border-sky-400"
             >
               🌐 Spin Up Cluster Node ({workerNodes} Active)
+            </button>
+
+            {/* Reset Nodes Button */}
+            <button
+              type="button"
+              onClick={resetNodesLocal}
+              className="w-full py-2 bg-transparent hover:bg-white/10 text-on-surface-variant hover:text-on-surface font-mono text-[10px] font-bold uppercase tracking-wider rounded transition-all duration-200 border border-outline-variant/60"
+            >
+              🔄 Reset Cluster Nodes
             </button>
           </div>
 
