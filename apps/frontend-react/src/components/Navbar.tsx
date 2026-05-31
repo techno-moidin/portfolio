@@ -132,7 +132,7 @@ function PerspectiveSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high/60 border border-outline-variant/60 hover:border-primary/50 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer backdrop-blur-md"
+        className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high/60 border border-outline-variant/60 hover:border-primary/50 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer backdrop-blur-md whitespace-nowrap shrink-0"
       >
         <span className="material-symbols-outlined text-[16px] text-primary select-none">
           visibility
@@ -146,7 +146,7 @@ function PerspectiveSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 w-56 rounded-2xl bg-surface-container-highest/95 border border-outline-variant/80 p-2 shadow-2xl backdrop-blur-lg z-50 animate-scale-up">
+        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 w-56 rounded-2xl bg-surface-container-highest/95 border border-outline-variant/80 p-2 shadow-2xl backdrop-blur-lg z-50 animate-scale-up">
           <div className="flex flex-col gap-1">
             {options.map((option) => (
               <button
@@ -232,7 +232,7 @@ export function Navbar() {
         </a>
 
         {/* ── Desktop Menu ── */}
-        <div className="hidden md:flex items-center gap-stack-lg">
+        <div className="hidden lg:flex items-center gap-stack-lg">
           <PerspectiveSwitcher />
           <div className="h-6 w-px bg-outline-variant"></div>
           {NAV_LINKS.map(({ label, href }) => (
@@ -247,7 +247,7 @@ export function Navbar() {
         </div>
 
         {/* Desktop Download CV */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <DownloadCVButton
             downloadState={downloadState}
             errorMessage={errorMessage}
@@ -259,7 +259,7 @@ export function Navbar() {
         {/* ── Mobile Hamburger Toggle ── */}
         <button
           id="mobile-menu-toggle"
-          className="md:hidden text-on-surface z-50 p-2 rounded-md
+          className="lg:hidden text-on-surface z-50 p-2 rounded-md
                      hover:bg-surface-container-high transition-colors duration-200
                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -281,7 +281,7 @@ export function Navbar() {
         aria-modal="true"
         aria-label="Navigation menu"
         className={`
-          md:hidden
+          lg:hidden
           fixed inset-0 top-0 left-0
           w-full
           min-h-[100dvh]

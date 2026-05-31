@@ -42,9 +42,9 @@ export function Education() {
             </div>
 
             {/* Details */}
-            <div className="flex-1 w-full animate-fadeIn text-left">
-              <div className="flex items-center justify-between gap-4 mb-2">
-                <span className="font-label-caps text-primary uppercase tracking-widest text-[11px]">
+            <div className="flex-1 w-full animate-fadeIn flex flex-col items-start text-left">
+              <div className="flex items-center justify-between w-full gap-4 mb-2">
+                <span className="font-label-caps text-primary uppercase tracking-widest text-[11px] text-left">
                   {education.year}
                 </span>
                 
@@ -57,19 +57,19 @@ export function Education() {
                 </div>
               </div>
               
-              <h3 className="font-headline-md text-[22px] md:text-[24px] font-bold text-on-surface mb-1">
+              <h3 className="font-headline-md text-[22px] md:text-[24px] font-bold text-on-surface mb-1 text-left w-full">
                 {education.degree}
               </h3>
-              <p className="font-code-md text-primary font-bold text-[14px] mb-3">
+              <p className="font-code-md text-primary font-bold text-[14px] mb-3 text-left w-full">
                 {education.field}
               </p>
-              <div className="flex items-start gap-2 text-on-surface-variant font-body-md text-[15px]">
+              <div className="flex items-start gap-2 text-on-surface-variant font-body-md text-[15px] text-left w-full justify-start">
                 <span className="material-symbols-outlined text-[16px] text-outline mt-0.5 shrink-0" aria-hidden="true">
                   location_on
                 </span>
-                <span className="flex-1 text-left leading-relaxed">
+                <p className="flex-1 text-left leading-relaxed text-on-surface-variant">
                   {education.institution} — {education.location}
-                </span>
+                </p>
               </div>
             </div>
 
