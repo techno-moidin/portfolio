@@ -180,6 +180,17 @@ All portfolio content is centralized here. No hardcoded text in components.
 - [x] **Step 1: Security Hardening & Environment Isolation** — Deactivated sourcemaps, secured `.env` ignores, established empty templates, and decoupled dynamic client/server process variable parsing.
 - [x] **Step 2: Automated Testing Suites** — Configured Vitest client specifications and Jest E2E controller integration gates, verifying 20/20 passing specs across both workspaces.
 - [x] **Step 3: CI/CD Pipeline Scaffolding (GitHub Actions)** — Built a cached, dual-job GitHub Actions workflow (`.github/workflows/ci.yml`) automating Node install caching, frontend ESLint compliance audits, unified tests, full workspace builds, and backend/frontend Dockerfile compilation dry-runs.
+- [x] **Step 4: Deployed Server Go-Live (Cloud Deployment)** — Deployed NestJS backend inside multi-stage Docker container on Render, configured monorepo-optimized Vite client builds on Vercel Edge networks, and whitelisted secure cross-domain CORS REST and WebSocket handshakes.
+
+### 🚀 Phase 4: Persona-Based Onboarding Gateway & Dynamic Link Routing (Completed)
+- [x] **Welcome Onboarding Screen** — Designed a premium glassmorphic overlay for first-time visitors prompting: *"Welcome. How would you like to explore Mohammed's engineering catalog today?"* softly blurring the particle canvas and layouts behind it.
+- [x] **Persona-Outcome Mapping** — Displayed three interactive cards mapping outcome intents to engine perspectives:
+  1. *Recruit software talent* ➔ Loads **HR / Software Engineer** timeline, skills, and CV actions.
+  2. *Evaluate timelines & ROI* ➔ Loads **CEO / Founder** slides, ROI budgets, and charts.
+  3. *Audit architectures & sandbox* ➔ Loads **CTO / Technical Lead** WebSocket panels and code debuggers.
+- [x] **LocalStorage Choice Retention** — Saves user selected role to local storage (keys: `role_perspective` and `onboarding_completed`) to bypass the onboarding overlay on subsequent visits automatically.
+- [x] **Dynamic URL Parameter Routing (`?ref=`)** — Parses query strings on initialization (e.g. `?ref=hr`, `?ref=cto`, `?ref=ceo`, `?ref=recruiter`, `?ref=founder`, `?ref=engineer`) to instantly bypass onboarding and render the custom perspective directly.
+- [x] **Subtle View-Toggle UI** — Integrated a minimized drop-down perspective switcher `"Change View: ..."` in the Navbar and inline micro-links in the Footer, removing the large role switcher buttons from the primary view.
 
 ---
 

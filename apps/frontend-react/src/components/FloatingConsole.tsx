@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useState, useEffect, useRef } from 'react';
 import { useRole } from '../utils/RoleContext';
-import { Terminal, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
+import { Terminal, ChevronDown, Trash2 } from 'lucide-react';
 
 interface LogEntry {
   timestamp: string;
@@ -57,12 +57,28 @@ export function FloatingConsole() {
 
   if (role !== 'CTO') return null;
 
+  if (!isOpen) {
+    return (
+      <button
+        onClick={() => setIsOpen(true)}
+        title="Open System Diagnostics Console"
+        aria-label="Open Developer Console"
+        className="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-surface-container-high/90 hover:bg-primary/20 border border-primary/40 flex items-center justify-center text-primary shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer backdrop-blur-md animate-pulse"
+        style={{
+          boxShadow: '0 0 15px rgba(78, 222, 163, 0.25)',
+        }}
+      >
+        <Terminal size={16} />
+      </button>
+    );
+  }
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col font-mono text-[11px] leading-relaxed max-w-[420px] w-full bg-background/95 border border-primary/40 rounded-xl shadow-2xl backdrop-blur-md overflow-hidden">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col font-mono text-[11px] leading-relaxed max-w-[calc(100vw-3rem)] sm:max-w-[420px] w-full bg-background/95 border border-primary/40 rounded-xl shadow-2xl backdrop-blur-md overflow-hidden animate-scale-up">
       
       {/* Header Bar */}
       <div 
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen(false)}
         className="flex justify-between items-center px-4 py-2.5 bg-surface-container-high border-b border-primary/20 cursor-pointer select-none"
       >
         <div className="flex items-center gap-2 text-primary">
@@ -76,38 +92,36 @@ export function FloatingConsole() {
               setLogs([]);
             }}
             title="Clear logs"
-            className="hover:text-primary transition-colors duration-200"
+            className="hover:text-primary transition-colors duration-200 cursor-pointer p-1"
           >
             <Trash2 size={12} />
           </button>
-          {isOpen ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
+          <ChevronDown size={14} className="cursor-pointer" />
         </div>
       </div>
 
       {/* Terminal View body */}
-      {isOpen && (
-        <div className="h-[200px] p-3 overflow-y-auto bg-black/60 flex flex-col gap-1 text-on-surface scrollbar-thin scrollbar-thumb-primary/25 scrollbar-track-transparent">
-          {logs.length === 0 ? (
-            <div className="text-on-surface-variant italic text-center py-8">No terminal actions logged. Try clicking buttons or testing forms!</div>
-          ) : (
-            logs.map((log, idx) => {
-              let color = 'text-primary'; // default INFO is emerald
-              if (log.type === 'API') color = 'text-sky-400';
-              if (log.type === 'WS') color = 'text-purple-400';
-              if (log.type === 'LIFECYCLE') color = 'text-amber-400';
+      <div className="h-[200px] p-3 overflow-y-auto bg-black/60 flex flex-col gap-1 text-on-surface scrollbar-thin scrollbar-thumb-primary/25 scrollbar-track-transparent">
+        {logs.length === 0 ? (
+          <div className="text-on-surface-variant italic text-center py-8">No terminal actions logged. Try clicking buttons or testing forms!</div>
+        ) : (
+          logs.map((log, idx) => {
+            let color = 'text-primary'; // default INFO is emerald
+            if (log.type === 'API') color = 'text-sky-400';
+            if (log.type === 'WS') color = 'text-purple-400';
+            if (log.type === 'LIFECYCLE') color = 'text-amber-400';
 
-              return (
-                <div key={idx} className="flex items-start gap-1.5 break-all">
-                  <span className="text-on-surface-variant shrink-0">{log.timestamp}</span>
-                  <span className={`${color} shrink-0 font-bold`}>[{log.type}]</span>
-                  <span className="text-on-surface-variant">{log.message}</span>
-                </div>
-              );
-            })
-          )}
-          <div ref={logEndRef} />
-        </div>
-      )}
+            return (
+              <div key={idx} className="flex items-start gap-1.5 break-all">
+                <span className="text-on-surface-variant shrink-0">{log.timestamp}</span>
+                <span className={`${color} shrink-0 font-bold`}>[{log.type}]</span>
+                <span className="text-on-surface-variant">{log.message}</span>
+              </div>
+            );
+          })
+        )}
+        <div ref={logEndRef} />
+      </div>
     </div>
   );
 }

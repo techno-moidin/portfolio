@@ -12,10 +12,11 @@ import { ParticleCanvas } from './components/ParticleCanvas';
 import { NotFound } from './components/NotFound';
 import { useRole } from './utils/RoleContext';
 import { FloatingConsole } from './components/FloatingConsole';
+import { OnboardingGateway } from './components/OnboardingGateway';
 
 function App() {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const { transitionStatus } = useRole();
+  const { transitionStatus, onboardingCompleted } = useRole();
 
   const heroGlowRef = useRef<HTMLElement | null>(null);
 
@@ -95,30 +96,34 @@ function App() {
 
   return (
     <div className="bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary overflow-x-hidden">
-      <div className="grid-background"></div>
-      <ParticleCanvas />
-      <div className="cursor-glow" id="cursorGlow" ref={cursorRef}></div>
+      {!onboardingCompleted && <OnboardingGateway />}
 
-      <Navbar />
+      <div className={!onboardingCompleted ? 'blur-[6px] pointer-events-none select-none transition-all duration-700 h-screen overflow-hidden' : 'transition-all duration-700'}>
+        <div className="grid-background"></div>
+        <ParticleCanvas />
+        <div className="cursor-glow" id="cursorGlow" ref={cursorRef}></div>
 
-      <main className="relative pt-20">
-        {isNotFound ? (
-          <NotFound />
-        ) : (
-          <div className={transitionClass}>
-            <Hero />
-            <About />
-            <Experience />
-            <Projects />
-            <Skills />
-            <Education />
-            <Contact />
-          </div>
-        )}
-      </main>
+        <Navbar />
 
-      <Footer />
-      <FloatingConsole />
+        <main className="relative pt-20">
+          {isNotFound ? (
+            <NotFound />
+          ) : (
+            <div className={transitionClass}>
+              <Hero />
+              <About />
+              <Experience />
+              <Projects />
+              <Skills />
+              <Education />
+              <Contact />
+            </div>
+          )}
+        </main>
+
+        <Footer />
+        <FloatingConsole />
+      </div>
     </div>
   );
 }

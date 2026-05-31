@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { Menu, X, Download, Loader2, AlertCircle } from 'lucide-react';
 import {
   fetchAndDownloadResume,
@@ -102,42 +102,76 @@ function DownloadCVButton({
 
 function PerspectiveSwitcher() {
   const { role, switchRole } = useRole();
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const getRoleLabel = () => {
+    if (role === 'HR') return 'Software Engineer';
+    if (role === 'CEO') return 'Product Manager';
+    return 'Technical Lead';
+  };
+
+  const options = [
+    { value: 'HR' as const, label: 'Software Engineer', subtitle: 'Recruiter Perspective' },
+    { value: 'CEO' as const, label: 'Product Manager', subtitle: 'Founder Perspective' },
+    { value: 'CTO' as const, label: 'Technical Lead', subtitle: 'CTO Perspective' },
+  ];
 
   return (
-    <div className="relative flex items-center p-1 bg-surface-container-high/60 border border-outline-variant/60 rounded-full backdrop-blur-md max-w-fit mx-auto">
-      {/* Background sliding indicator pill */}
-      <div
-        className="absolute top-1 bottom-1 rounded-full bg-primary transition-all duration-300 ease-out"
-        style={{
-          left: role === 'HR' ? '4px' : role === 'CEO' ? 'calc(33.33% + 2px)' : 'calc(66.66% + 2px)',
-          width: 'calc(33.33% - 6px)',
-        }}
-      />
+    <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen((prev) => !prev)}
+        className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-high/60 border border-outline-variant/60 hover:border-primary/50 text-[12px] font-bold text-on-surface-variant hover:text-primary transition-all duration-200 cursor-pointer backdrop-blur-md whitespace-nowrap shrink-0"
+      >
+        <span className="material-symbols-outlined text-[16px] text-primary select-none">
+          visibility
+        </span>
+        <span className="font-code-md tracking-wider">
+          Change View: {getRoleLabel()}
+        </span>
+        <span className={`material-symbols-outlined text-[14px] transition-transform duration-200 select-none ${isOpen ? 'rotate-180' : ''}`}>
+          expand_more
+        </span>
+      </button>
 
-      <button
-        onClick={() => switchRole('HR')}
-        className={`relative z-10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full transition-colors duration-300 ${
-          role === 'HR' ? 'text-background' : 'text-on-surface-variant hover:text-primary'
-        }`}
-      >
-        Recruiter
-      </button>
-      <button
-        onClick={() => switchRole('CEO')}
-        className={`relative z-10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full transition-colors duration-300 ${
-          role === 'CEO' ? 'text-background' : 'text-on-surface-variant hover:text-primary'
-        }`}
-      >
-        Founder
-      </button>
-      <button
-        onClick={() => switchRole('CTO')}
-        className={`relative z-10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-full transition-colors duration-300 ${
-          role === 'CTO' ? 'text-background' : 'text-on-surface-variant hover:text-primary'
-        }`}
-      >
-        Engineer
-      </button>
+      {isOpen && (
+        <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 w-56 rounded-2xl bg-surface-container-highest/95 border border-outline-variant/80 p-2 shadow-2xl backdrop-blur-lg z-50 animate-scale-up">
+          <div className="flex flex-col gap-1">
+            {options.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => {
+                  switchRole(option.value);
+                  setIsOpen(false);
+                }}
+                className={`w-full text-left px-4 py-2.5 rounded-xl transition-all duration-200 flex flex-col gap-0.5 cursor-pointer hover:bg-primary/10 ${
+                  role === option.value
+                    ? 'bg-primary/10 border border-primary/20'
+                    : 'border border-transparent'
+                }`}
+              >
+                <span className={`text-[12px] font-bold ${role === option.value ? 'text-primary' : 'text-on-surface'}`}>
+                  {option.label}
+                </span>
+                <span className="text-[10px] text-on-surface-variant/60 font-medium">
+                  {option.subtitle}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -181,12 +215,24 @@ export function Navbar() {
     >
       <div className="flex justify-between items-center max-w-container-max mx-auto px-gutter h-20">
         {/* Logo */}
-        <div className="font-code-md text-[14px] font-bold text-primary z-50">
-          MSM_PORTFOLIO
-        </div>
+        <a href="#projects" className="flex items-center gap-2.5 z-50 group select-none cursor-pointer focus-visible:outline-none" aria-label="MSM Labs Home">
+          <svg className="w-7 h-7 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="10" fill="#0b1326" />
+            <rect x="2" y="2" width="44" height="44" rx="8" stroke="#4edea3" stroke-width="2" stroke-opacity="0.8" />
+            <rect x="10" y="14" width="4" height="20" rx="1.5" fill="#4edea3" />
+            <path d="M14 14 L24 24 L34 14" stroke="#4edea3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="34" y="14" width="4" height="20" rx="1.5" fill="#4edea3" />
+            <circle cx="18" cy="30" r="2.5" fill="#10b981" />
+            <circle cx="24" cy="30" r="2.5" fill="#4edea3" />
+            <circle cx="30" cy="30" r="2.5" fill="#10b981" />
+          </svg>
+          <span className="font-code-md text-[13px] font-extrabold uppercase tracking-widest text-primary group-hover:text-primary-fixed-dim transition-colors duration-200">
+            MSM Labs
+          </span>
+        </a>
 
         {/* ── Desktop Menu ── */}
-        <div className="hidden md:flex items-center gap-stack-lg">
+        <div className="hidden lg:flex items-center gap-stack-lg">
           <PerspectiveSwitcher />
           <div className="h-6 w-px bg-outline-variant"></div>
           {NAV_LINKS.map(({ label, href }) => (
@@ -201,7 +247,7 @@ export function Navbar() {
         </div>
 
         {/* Desktop Download CV */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <DownloadCVButton
             downloadState={downloadState}
             errorMessage={errorMessage}
@@ -213,7 +259,7 @@ export function Navbar() {
         {/* ── Mobile Hamburger Toggle ── */}
         <button
           id="mobile-menu-toggle"
-          className="md:hidden text-on-surface z-50 p-2 rounded-md
+          className="lg:hidden text-on-surface z-50 p-2 rounded-md
                      hover:bg-surface-container-high transition-colors duration-200
                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -235,7 +281,7 @@ export function Navbar() {
         aria-modal="true"
         aria-label="Navigation menu"
         className={`
-          md:hidden
+          lg:hidden
           fixed inset-0 top-0 left-0
           w-full
           min-h-[100dvh]

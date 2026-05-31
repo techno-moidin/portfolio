@@ -163,7 +163,7 @@ function ScopeCalculator() {
             <div className="flex flex-col gap-6 animate-fadeIn">
               
               {/* Top Stats Cards */}
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 
                 <div className="bg-black/40 border border-primary/20 p-4 rounded-xl flex flex-col items-center">
                   <DollarSign size={16} className="text-primary mb-1" />
@@ -447,7 +447,7 @@ function SystemStressTester() {
           </div>
 
           {/* Dashboard Metrics progress bars */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             
             {/* CPU Usage */}
             <div className="flex flex-col bg-black/40 border border-outline-variant/40 p-4 rounded-lg">

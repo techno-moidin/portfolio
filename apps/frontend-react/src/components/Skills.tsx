@@ -344,7 +344,7 @@ export function Skills() {
                 </div>
                 
                 {/* Puzzle Selector */}
-                <div className="flex gap-2">
+                <div className="grid grid-cols-2 gap-2 w-full sm:flex sm:w-auto sm:gap-2">
                   <button
                     onClick={() => { setActiveBug('n1_loop'); setSelectedLines([]); setSandboxFeedback(null); }}
                     className={`px-3 py-1.5 text-[10px] font-mono rounded ${activeBug === 'n1_loop' ? 'bg-sky-500 text-black font-bold' : 'bg-surface-container-high text-on-surface-variant'}`}
@@ -385,7 +385,7 @@ export function Skills() {
                           className={`flex items-start select-none cursor-pointer py-0.5 px-2 hover:bg-sky-500/10 transition-colors duration-150 ${isSelected ? 'bg-sky-500/20 border-l-2 border-sky-400' : ''}`}
                         >
                           <span className="w-6 text-on-surface-variant/40 text-right pr-2 shrink-0">{lineNum}</span>
-                          <span className={isSelected ? 'text-sky-300 font-semibold' : 'text-on-surface-variant'}>{line}</span>
+                          <span className={`whitespace-pre ${isSelected ? 'text-sky-300 font-semibold' : 'text-on-surface-variant'}`}>{line}</span>
                         </div>
                       );
                     })}
