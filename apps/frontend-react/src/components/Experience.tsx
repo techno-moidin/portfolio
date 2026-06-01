@@ -2,6 +2,23 @@ import { useState } from 'react';
 import { RESUME_DATA } from '../data/resume';
 
 /**
+ * Helper to parse markdown-like bold syntax (**text**) and render it using strong tags.
+ */
+function formatBoldText(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={i} className="font-bold text-on-surface">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
+/**
  * Experience.tsx — "Experience with Timeline Motion"
  *
  * Timeline hover animation:
@@ -149,7 +166,7 @@ export function Experience() {
                           >
                             {exp.icons?.[i] ?? 'terminal'}
                           </span>
-                          <span>{desc}</span>
+                          <span>{formatBoldText(desc)}</span>
                         </li>
                       ))}
                     </ul>
