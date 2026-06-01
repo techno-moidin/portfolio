@@ -361,7 +361,7 @@ export function Skills() {
               </div>
 
               <p className="text-xs text-on-surface-variant mb-4">
-                Review the snippet below representing an active backend issue. **Click on the line(s) causing the performance leak or vulnerability**, and submit your review.
+                Review the snippet below representing an active backend issue. <strong className="font-bold text-on-surface">Click on the line(s) causing the performance leak or vulnerability</strong>, and submit your review.
               </p>
 
               {/* Split Pane Sandbox */}
