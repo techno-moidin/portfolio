@@ -7,29 +7,28 @@ async function bootstrap() {
   // Expose global /api prefix
   app.setGlobalPrefix('api');
   
-  const allowedOriginsString = process.env.ALLOWED_ORIGINS || '';
-  const configuredOrigins = allowedOriginsString
-    ? allowedOriginsString.split(',').map(o => o.trim())
-    : [];
+  const allowedOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+    : ['http://localhost:5173', 'http://localhost:3000'];
 
-  // Enable secure dynamic CORS for frontend requests
+  // Robust CORS implementation for production subdomains
   app.enableCors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like curl, mobile clients, or server-to-server)
       if (!origin) return callback(null, true);
-      
+
+      const isConfigured = allowedOrigins.indexOf(origin) !== -1;
       const isLocal = origin.startsWith('http://localhost:') || origin === 'http://localhost';
       const isVercel = origin.endsWith('.vercel.app');
-      const isConfigured = configuredOrigins.includes(origin);
 
-      if (isLocal || isVercel || isConfigured) {
+      if (isConfigured || isLocal || isVercel) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        callback(new Error('Blocked by CORS Policy (MSM Labs Protection)'));
       }
     },
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Accept, Authorization',
   });
 
   const port = process.env.PORT || 3000;

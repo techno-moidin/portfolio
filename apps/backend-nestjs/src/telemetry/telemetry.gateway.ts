@@ -11,19 +11,18 @@ import { TelemetryMetrics } from 'shared-types';
 @WebSocketGateway({
   cors: {
     origin: (requestOrigin: string, callback: (err: Error | null, allow?: boolean) => void) => {
-      const allowedOriginsString = process.env.ALLOWED_ORIGINS || '';
-      const configuredOrigins = allowedOriginsString
-        ? allowedOriginsString.split(',').map(o => o.trim())
-        : [];
+      const allowedOrigins = process.env.ALLOWED_ORIGINS
+        ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+        : ['http://localhost:5173', 'http://localhost:3000'];
 
       const isLocal = !requestOrigin || requestOrigin.startsWith('http://localhost:') || requestOrigin === 'http://localhost';
       const isVercel = requestOrigin?.endsWith('.vercel.app');
-      const isConfigured = configuredOrigins.includes(requestOrigin);
+      const isConfigured = allowedOrigins.indexOf(requestOrigin) !== -1;
 
-      if (isLocal || isVercel || isConfigured) {
+      if (isConfigured || isLocal || isVercel) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        callback(new Error('Blocked by CORS Policy (MSM Labs Protection)'));
       }
     },
     credentials: true,
