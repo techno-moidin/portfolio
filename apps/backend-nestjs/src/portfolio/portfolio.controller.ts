@@ -83,7 +83,7 @@ startxref
         highlightedProjects = ['4', '6', '7'];
         highlights = [
           'Engineered core features of muxemail.com with React & Material UI.',
-          'Built the Next.js Patient Portal at DrHero.ae.',
+          'Built the Next.js Patient Portal at DrHero.',
           'Coordinated unit testing pipelines with React Jest.'
         ];
         break;
