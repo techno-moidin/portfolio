@@ -266,7 +266,7 @@ export const RESUME_DATA = {
     },
     {
       id: "5",
-      title: "Bossini.ae",
+      title: "Bossini",
       description: "Premium retail storefront optimized for performance and conversion, managing large-scale product catalogs and deployments on Google Cloud Platform.",
       technologies: ["SHOPIFY", "LIQUID", "GCP"],
       link: "#",
@@ -274,7 +274,7 @@ export const RESUME_DATA = {
     },
     {
       id: "6",
-      title: "DrHero.ae",
+      title: "DrHero",
       description: "Healthcare management system for appointments and patient records, built with Next.js and Prisma, featuring high-security data encryption and HIPAA-aligned protocols.",
       technologies: ["NEXT.JS", "PRISMA", "VULTR"],
       link: "#",
