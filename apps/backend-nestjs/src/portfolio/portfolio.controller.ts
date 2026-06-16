@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Query, Body, Res, HttpStatus } from '@nestjs/common';
 import { Response } from 'express';
 import { ScopeCalculateDto, ScopeCalculateResult, RoadmapPhase } from 'shared-types';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Controller('portfolio')
 export class PortfolioController {
@@ -9,43 +11,45 @@ export class PortfolioController {
   @Get('resume')
   async downloadResume(@Res() res: Response) {
     try {
-      // Return a sleek, valid minimal PDF buffer for recruiters to view
-      const mockPdfContent = `%PDF-1.4
-1 0 obj < < /Type /Catalog /Pages 2 0 R > > endobj
-2 0 obj < < /Type /Pages /Kids [ 3 0 R ] /Count 1 > > endobj
-3 0 obj < < /Type /Page /Parent 2 0 R /MediaBox [ 0 0 612 792 ] /Resources < < /Font < < /F1 4 0 R > > > > /Contents 5 0 R > > endobj
-4 0 obj < < /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold > > endobj
-5 0 obj < < /Length 120 > > stream
-BT
-/F1 24 Tf
-70 700 Td
-(MOHAMMED SHAHEER MOIDIN - Full-Stack Developer) Tj
-/F1 12 Tf
-0 -50 Td
-(Email: shaheermoidin97@gmail.com | Dubai, UAE) Tj
-0 -20 Td
-(Thank you for downloading my resume from the interactive portfolio!) Tj
-ET
-endstream
-endobj
-xref
-0 6
-0000000000 65535 f 
-0000000009 00000 n 
-0000000062 00000 n 
-0000000125 00000 n 
-0000000259 00000 n 
-0000000344 00000 n 
-trailer < < /Size 6 /Root 1 0 R > >
-startxref
-514
-%%EOF`;
+      const fileId = process.env.GOOGLE_DRIVE_CV_FILE_ID;
       
-      const buffer = Buffer.from(mockPdfContent, 'utf-8');
+      if (fileId) {
+        try {
+          const driveUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+          const response = await fetch(driveUrl);
+          
+          if (response.ok) {
+            const arrayBuffer = await response.arrayBuffer();
+            const buffer = Buffer.from(arrayBuffer);
+            
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', 'attachment; filename=Mohammed_Shaheer_Moidin_Resume.pdf');
+            res.setHeader('X-CV-Source', 'google-drive');
+            res.setHeader('Access-Control-Expose-Headers', 'X-CV-Source');
+            return res.status(HttpStatus.OK).send(buffer);
+          }
+          console.warn(`Google Drive fetch failed with status ${response.status}. Falling back to local PDF.`);
+        } catch (driveErr) {
+          console.warn('Google Drive fetch failed with error. Falling back to local PDF:', driveErr.message);
+        }
+      }
+
+      // Fallback: read the local PDF CV file
+      const rootPath = __dirname.includes('dist')
+        ? path.join(__dirname, '..', '..', '..')
+        : path.join(__dirname, '..', '..');
+      const localPdfPath = path.join(rootPath, 'assets', 'shaheer_cv_full.pdf');
       
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', 'attachment; filename=Mohammed_Shaheer_Moidin_Resume.pdf');
-      res.status(HttpStatus.OK).send(buffer);
+      if (fs.existsSync(localPdfPath)) {
+        const buffer = fs.readFileSync(localPdfPath);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=Mohammed_Shaheer_Moidin_Resume.pdf');
+        res.setHeader('X-CV-Source', 'backend-fallback');
+        res.setHeader('Access-Control-Expose-Headers', 'X-CV-Source');
+        return res.status(HttpStatus.OK).send(buffer);
+      } else {
+        throw new Error('Local fallback CV file not found.');
+      }
     } catch (err) {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         message: 'Could not fetch resume PDF',

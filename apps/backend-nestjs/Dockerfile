@@ -37,6 +37,7 @@ RUN npm ci --omit=dev
 # Copy compiled resources and workspaces from builder
 COPY --from=builder /usr/src/app/packages/shared-types/dist ./packages/shared-types/dist
 COPY --from=builder /usr/src/app/apps/backend-nestjs/dist ./apps/backend-nestjs/dist
+COPY --from=builder /usr/src/app/apps/backend-nestjs/assets ./apps/backend-nestjs/assets
 
 EXPOSE 3000
 
