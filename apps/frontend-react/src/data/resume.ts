@@ -45,7 +45,7 @@ export const RESUME_DATA = {
   phone: "+972 524178995",
   about: "Detail-oriented Full Stack Developer with 7+ years of experience designing, developing, and deploying robust web applications. Expert in cloud-native architectures using AWS and GCP, specializing in scalable microservices and high-performance backend systems.",
   email: "shaheermoidin97@gmail.com",
-  github: "https://github.com/techno-moidin",
+  github: "",
   linkedin: "https://linkedin.com/in/mohammed-shaheer-moidin",
   location: "Dubai, UAE",
   visaStatus: "Employment Visa",
@@ -211,7 +211,7 @@ export const RESUME_DATA = {
     {
       title: "Cloud & DevOps",
       icon: "cloud",
-      skills: ["AWS", "GCP", "Docker", "GitHub Actions", "NGINX", "CI/CD", "PM2", "Shell Scripting"],
+      skills: ["AWS", "GCP", "Docker", "CI/CD Automation", "NGINX", "CI/CD", "PM2", "Shell Scripting"],
     },
     {
       title: "Microservices",

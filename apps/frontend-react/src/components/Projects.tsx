@@ -649,17 +649,6 @@ export function Projects() {
                     {project.description}
                   </p>
                 </div>
-
-                {/* View repo link */}
-                <a
-                  className="inline-flex items-center gap-2 text-primary font-label-caps text-[12px] group/link"
-                  href={project.link || '#'}
-                >
-                  VIEW REPOSITORY
-                  <span className="material-symbols-outlined text-[18px] transition-transform group-hover/link:translate-x-1">
-                    arrow_right_alt
-                  </span>
-                </a>
               </div>
             );
           })}

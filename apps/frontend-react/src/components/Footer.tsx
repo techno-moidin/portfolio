@@ -50,14 +50,16 @@ export function Footer() {
             >
               LinkedIn
             </a>
-            <a
-              className="text-on-surface-variant font-body-md hover:text-primary hover:-translate-y-0.5 transition-all duration-200"
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
+            {github && (
+              <a
+                className="text-on-surface-variant font-body-md hover:text-primary hover:-translate-y-0.5 transition-all duration-200"
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            )}
             <a
               className="text-on-surface-variant font-body-md hover:text-primary hover:-translate-y-0.5 transition-all duration-200"
               href={`mailto:${email}`}
