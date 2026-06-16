@@ -57,6 +57,9 @@ export async function fetchAndDownloadResume(
       throw new Error('Unexpected response format from server.');
     }
 
+    const cvSource = response.headers.get('X-CV-Source') || 'backend';
+    console.info(`%c[Resume API] CV successfully downloaded from source: ${cvSource}`, 'color: #4edea3; font-weight: bold;');
+
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
 
@@ -67,10 +70,8 @@ export async function fetchAndDownloadResume(
 
     return { success: true };
   } catch (err) {
-    console.warn(
-      'API resume download failed. Activating local static fallback:',
-      err
-    );
+    const errorMsg = err instanceof Error ? err.message : 'Unknown error';
+    console.info(`%c[Resume API] Backend fetch failed (${errorMsg}). Activating frontend fallback. CV successfully downloaded from source: frontend-fallback`, 'color: #fbbf24; font-weight: bold;');
 
     try {
       // Trigger download using the static PDF imported URL
