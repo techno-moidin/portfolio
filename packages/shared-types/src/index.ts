@@ -47,3 +47,32 @@ export interface VerifyBugResult {
   diffText?: string;
   optimizedCode?: string;
 }
+
+// ── Traffic Analytics Types ─────────────────────────────────────────────────
+
+export interface TrackPayload {
+  deviceId: string;
+  userAgent: string;
+  referrer?: string;
+}
+
+export interface VisitorRecord {
+  deviceId: string;
+  ip: string;
+  userAgent: string;
+  country: string;
+  region: string;
+  city: string;
+  isp: string; // Network Name
+  visitCount: number;
+  firstVisit: string;
+  lastVisit: string;
+}
+
+export interface TrafficStats {
+  totalViews: number;
+  uniqueViewers: number;
+  returningViewers: number;
+  visitors: VisitorRecord[];
+}
+

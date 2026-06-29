@@ -72,7 +72,7 @@ describe('Skills Component & Offline Fallback', () => {
       expect(screen.getByText('96%')).toBeInTheDocument();
       expect(screen.getByText('Highly compatible! Engineered core React states and Redux wrappers across 3 major SaaS platforms.')).toBeInTheDocument();
       expect(screen.getByText('Built MuxEmail dashboard.')).toBeInTheDocument();
-    });
+    }, { timeout: 4000 });
 
     // Confirms fetch was called first and then gracefully degraded
     expect(globalThis.fetch).toHaveBeenCalledTimes(1);

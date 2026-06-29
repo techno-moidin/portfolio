@@ -1,0 +1,14 @@
+[
+  {
+    "deviceId": "e2e-test-device-1234",
+    "ip": "::ffff:127.0.0.1",
+    "userAgent": "Mozilla/5.0 E2E Testing Client",
+    "country": "Local Network",
+    "region": "Dubai",
+    "city": "UAE",
+    "isp": "Localhost Loopback",
+    "visitCount": 1,
+    "firstVisit": "2026-06-29T10:59:18.837Z",
+    "lastVisit": "2026-06-29T10:59:18.837Z"
+  }
+]

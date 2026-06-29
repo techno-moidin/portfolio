@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { RESUME_DATA } from '../data/resume';
 import { useRole } from '../utils/RoleContext';
-import { logEvent } from './FloatingConsole';
+import { logEvent } from '../utils/logger';
 import { CheckCircle, AlertTriangle, Play, RefreshCw, Code, Terminal } from 'lucide-react';
 
 interface SkillMatchResult {

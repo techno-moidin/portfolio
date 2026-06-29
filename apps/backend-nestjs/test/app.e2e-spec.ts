@@ -1,3 +1,8 @@
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+dotenv.config({ path: path.resolve(process.cwd(), 'apps/backend-nestjs/.env') });
+dotenv.config({ path: path.resolve(process.cwd(), '.env') });
+
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
@@ -7,6 +12,9 @@ describe('MSM Portfolio Backend - E2E Integration Suite', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
+    process.env.ADMIN_GATEWAY_KEY = process.env.ADMIN_GATEWAY_KEY || 'msm-gateway';
+    process.env.ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || 'msmlabs26';
+
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
@@ -199,6 +207,86 @@ describe('MSM Portfolio Backend - E2E Integration Suite', () => {
       expect(response.body.message).toContain('Superb spot! You identified the race condition');
       expect(response.body.optimizedCode).toBeDefined();
       expect(response.body.diffText).toBeDefined();
+    });
+  });
+
+  // ── 6. Traffic Analytics Verification ──────────────────────────────────────
+  describe('Traffic Analytics', () => {
+    const testDeviceId = 'e2e-test-device-1234';
+
+    it('should successfully record a visitor track event', async () => {
+      const payload = {
+        deviceId: testDeviceId,
+        userAgent: 'Mozilla/5.0 E2E Testing Client',
+        referrer: 'https://google.com'
+      };
+
+      const response = await request(app.getHttpServer())
+        .post('/api/traffic/track')
+        .send(payload);
+
+      expect(response.status).toBe(201);
+      expect(response.body.success).toBe(true);
+    });
+
+    it('should successfully verify a valid gateway key', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/api/traffic/verify-gateway')
+        .send({ key: 'msm-gateway' });
+
+      expect(response.status).toBe(201);
+      expect(response.body.success).toBe(true);
+    });
+
+    it('should reject verification for an invalid gateway key', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/api/traffic/verify-gateway')
+        .send({ key: 'invalid-key-here' });
+
+      expect(response.status).toBe(401);
+    });
+
+    it('should reject fetching stats if no authentication token is provided', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/api/traffic/stats');
+      expect(response.status).toBe(401);
+    });
+
+    it('should successfully authenticate with the correct passcode', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/api/traffic/auth')
+        .send({ passcode: 'msmlabs26' });
+
+      expect(response.status).toBe(201);
+      expect(response.body.success).toBe(true);
+      expect(response.body.token).toBeDefined();
+    });
+
+    it('should retrieve aggregated traffic stats including the recorded visitor when utilizing a valid Bearer token', async () => {
+      // 1. Authenticate to get active token
+      const authRes = await request(app.getHttpServer())
+        .post('/api/traffic/auth')
+        .send({ passcode: 'msmlabs26' });
+      const token = authRes.body.token;
+
+      // Delay slightly to allow the asynchronous tracking operation to complete
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      // 2. Query stats using the token
+      const response = await request(app.getHttpServer())
+        .get('/api/traffic/stats')
+        .set('Authorization', `Bearer ${token}`);
+
+      expect(response.status).toBe(200);
+      expect(response.body.totalViews).toBeGreaterThanOrEqual(1);
+      expect(response.body.uniqueViewers).toBeGreaterThanOrEqual(1);
+      
+      const visitor = response.body.visitors.find((v: any) => v.deviceId === testDeviceId);
+      expect(visitor).toBeDefined();
+      expect(visitor.ip).toBeDefined();
+      expect(visitor.userAgent).toBe('Mozilla/5.0 E2E Testing Client');
+      expect(visitor.country).toBe('Local Network');
+      expect(visitor.isp).toBe('Localhost Loopback');
     });
   });
 });

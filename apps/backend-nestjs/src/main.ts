@@ -1,3 +1,12 @@
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+
+// Load environment variables from both the monorepo root and the backend subdirectory
+dotenv.config({ path: path.resolve(process.cwd(), 'apps/backend-nestjs/.env') });
+dotenv.config({ path: path.resolve(process.cwd(), '.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
