@@ -2,24 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useRole } from '../utils/RoleContext';
 import { Terminal, ChevronDown, Trash2, RefreshCw } from 'lucide-react';
 import type { TrafficStats } from 'shared-types';
-
-interface LogEntry {
-  timestamp: string;
-  type: 'INFO' | 'API' | 'WS' | 'LIFECYCLE';
-  message: string;
-}
-
-// Global logger helper that triggers custom events
-export function logEvent(type: LogEntry['type'], message: string) {
-  const event = new CustomEvent('app-dev-log', {
-    detail: {
-      timestamp: new Date().toLocaleTimeString(),
-      type,
-      message,
-    },
-  });
-  window.dispatchEvent(event);
-}
+import { logEvent, type LogEntry } from '../utils/logger';
 
 export function FloatingConsole() {
   const { role } = useRole();
@@ -77,7 +60,7 @@ export function FloatingConsole() {
             sessionStorage.removeItem('msm_admin_mode');
             setAdminMode(false);
           }
-        } catch (err: any) {
+        } catch {
           // Offline fallback
           if (gateway === 'msm-gateway' || gateway === 'msmlabs26') {
             sessionStorage.setItem('msm_admin_mode', 'true');
@@ -143,7 +126,8 @@ export function FloatingConsole() {
       } else {
         setTrafficError('Failed to load traffic data.');
       }
-    } catch (err: any) {
+    } catch (err) {
+      const errMsg = err instanceof Error ? err.message : String(err);
       setTrafficError(null);
       // Fallback for offline mode
       setTrafficData({
@@ -165,7 +149,7 @@ export function FloatingConsole() {
           }
         ]
       });
-      logEvent('LIFECYCLE', `Traffic stats fallback to local resolver: ${err.message}`);
+      logEvent('LIFECYCLE', `Traffic stats fallback to local resolver: ${errMsg}`);
     } finally {
       setIsLoadingTraffic(false);
     }
@@ -199,7 +183,7 @@ export function FloatingConsole() {
         const data = await response.json();
         setAuthError(data.message || 'Authentication failed.');
       }
-    } catch (err: any) {
+    } catch {
       setAuthError(null);
       // Local fallback for offline testing
       if (passcode === 'msmlabs26') {

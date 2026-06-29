@@ -11,7 +11,8 @@ import { Footer } from './components/Footer';
 import { ParticleCanvas } from './components/ParticleCanvas';
 import { NotFound } from './components/NotFound';
 import { useRole } from './utils/RoleContext';
-import { FloatingConsole, logEvent } from './components/FloatingConsole';
+import { FloatingConsole } from './components/FloatingConsole';
+import { logEvent } from './utils/logger';
 import { OnboardingGateway } from './components/OnboardingGateway';
 
 function App() {
@@ -84,8 +85,9 @@ function App() {
           // Fire log to Developer Console
           logEvent('API', `Recorded visit session. Device Identifier: ${deviceId!.slice(0, 8)}...`);
         }
-      } catch (err: any) {
-        logEvent('LIFECYCLE', `Traffic tracking failed offline: ${err.message}`);
+      } catch (err) {
+        const errMsg = err instanceof Error ? err.message : String(err);
+        logEvent('LIFECYCLE', `Traffic tracking failed offline: ${errMsg}`);
       }
     };
 
