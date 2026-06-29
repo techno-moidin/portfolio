@@ -11,7 +11,7 @@ import { Footer } from './components/Footer';
 import { ParticleCanvas } from './components/ParticleCanvas';
 import { NotFound } from './components/NotFound';
 import { useRole } from './utils/RoleContext';
-import { FloatingConsole } from './components/FloatingConsole';
+import { FloatingConsole, logEvent } from './components/FloatingConsole';
 import { OnboardingGateway } from './components/OnboardingGateway';
 
 function App() {
@@ -52,6 +52,45 @@ function App() {
       }, 150);
     }
   }, [onboardingCompleted]);
+
+  // Client-Side Visitor Tracking Setup
+  useEffect(() => {
+    let deviceId = localStorage.getItem('msm_device_id');
+    if (!deviceId) {
+      // Safe fallback UUID generator
+      if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+        deviceId = crypto.randomUUID();
+      } else {
+        deviceId = 'msm-' + Math.random().toString(36).substring(2, 15) + '-' + Math.random().toString(36).substring(2, 15);
+      }
+      localStorage.setItem('msm_device_id', deviceId);
+    }
+
+    const trackVisitor = async () => {
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+        const response = await fetch(`${apiUrl}/api/traffic/track`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            deviceId,
+            userAgent: navigator.userAgent,
+            referrer: document.referrer || undefined,
+          }),
+        });
+        if (response.ok) {
+          // Fire log to Developer Console
+          logEvent('API', `Recorded visit session. Device Identifier: ${deviceId!.slice(0, 8)}...`);
+        }
+      } catch (err: any) {
+        logEvent('LIFECYCLE', `Traffic tracking failed offline: ${err.message}`);
+      }
+    };
+
+    trackVisitor();
+  }, []);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
