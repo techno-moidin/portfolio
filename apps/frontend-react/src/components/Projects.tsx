@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { RESUME_DATA } from '../data/resume';
 import { useRole } from '../utils/RoleContext';
-import { logEvent } from './FloatingConsole';
+import { logEvent } from '../utils/logger';
 import { io, Socket } from 'socket.io-client';
 import { 
   BarChart2, Cpu, HardDrive, Network, 
