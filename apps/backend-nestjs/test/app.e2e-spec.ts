@@ -12,6 +12,9 @@ describe('MSM Portfolio Backend - E2E Integration Suite', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
+    process.env.ADMIN_GATEWAY_KEY = process.env.ADMIN_GATEWAY_KEY || 'msm-gateway';
+    process.env.ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || 'msmlabs26';
+
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
