@@ -178,14 +178,14 @@ export function OnboardingGateway() {
             {selectedRole && (
               <button
                 onClick={() => handleBoot(selectedRole)}
-                className="w-full sm:w-auto px-8 py-3 rounded-xl uppercase tracking-wider font-code-md text-xs font-bold bg-surface-container/60 hover:bg-background border transition-all duration-300 cursor-pointer shadow-lg animate-fade-in"
+                className="w-full sm:w-auto px-8 py-3 rounded-xl uppercase tracking-wider font-code-md text-xs font-bold bg-surface-container/60 hover:bg-background border transition-all duration-300 cursor-pointer shadow-lg animate-fade-in animate-pulse-ring"
                 style={{
                   borderColor: selectedAccentColor,
                   color: selectedAccentColor,
                   boxShadow: `0 0 20px ${selectedAccentColor}30`,
                 }}
               >
-                [ Boot {selectedRole} Console ]
+                Explore as {cards.find(c => c.role === selectedRole)?.title}
               </button>
             )}
           </div>
