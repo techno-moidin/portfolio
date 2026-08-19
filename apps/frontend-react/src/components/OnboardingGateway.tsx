@@ -5,117 +5,189 @@ export function OnboardingGateway() {
   const { switchRole, setOnboardingCompleted } = useRole();
   const [isExiting, setIsExiting] = useState(false);
   const [selectedRole, setSelectedRole] = useState<UserRole | null>(null);
+  const [hoveredRole, setHoveredRole] = useState<UserRole | null>(null);
 
-  const handleSelect = (role: UserRole) => {
-    setSelectedRole(role);
+  const handleBoot = (role: UserRole) => {
     setIsExiting(true);
 
-    // Wait 400ms for smooth exit transition to finish before unmounting
+    // Wait 450ms for smooth exit transition to finish before unmounting
     setTimeout(() => {
       switchRole(role);
       setOnboardingCompleted(true);
-    }, 400);
+    }, 450);
+  };
+
+  const handleCardClick = (role: UserRole) => {
+    if (selectedRole === role) {
+      // Second click on an already selected card boots it immediately
+      handleBoot(role);
+    } else {
+      setSelectedRole(role);
+    }
   };
 
   const cards = [
     {
       role: 'HR' as UserRole,
       icon: 'person_search',
-      outcome: 'I am looking to recruit full-stack software talent.',
-      description: 'Audit core engineering stack, download resume, and review academic backgrounds.',
-      details: 'Timeline, full resume PDF, & skill matrices',
-      borderClass: 'border-secondary-fixed-dim/20 hover:border-primary hover:shadow-[0_0_25px_rgba(78,222,163,0.15)]',
-      accentColor: 'text-secondary-fixed-dim',
+      title: 'Recruiter',
+      subtitle: 'HR & Talent Portal',
+      consoleText: 'Unlocks my downloadable PDF CV, full employment history timeline, and core technical skill matrices to evaluate candidate fit.',
+      colorClass: 'text-secondary',
+      borderColor: 'border-secondary/20',
+      activeBorderClass: 'border-secondary/80 bg-secondary/5 shadow-[0_0_30px_rgba(137,206,255,0.25)]',
+      hoverBorderClass: 'hover:border-secondary/60 hover:shadow-[0_0_20px_rgba(137,206,255,0.15)]',
+      glowStyle: { boxShadow: '0 0 40px rgba(137, 206, 255, 0.1) inset' },
+      accentColor: '#89ceff',
     },
     {
       role: 'CEO' as UserRole,
       icon: 'insights',
-      outcome: 'I want to evaluate product timelines and project ROI.',
-      description: 'Use the interactive scoping slider, audit product roadmaps, and review commercial scaling details.',
-      details: 'Active ROI sliders, budget plans, & direct mailers',
-      borderClass: 'border-tertiary-fixed-dim/20 hover:border-primary hover:shadow-[0_0_25px_rgba(78,222,163,0.15)]',
-      accentColor: 'text-tertiary-fixed-dim',
+      title: 'Founder',
+      subtitle: 'Executive & ROI Portal',
+      consoleText: 'Unlocks commercial project roadmaps, client case studies, and interactive project scoping sliders to evaluate product timeline & ROI.',
+      colorClass: 'text-tertiary',
+      borderColor: 'border-tertiary/20',
+      activeBorderClass: 'border-tertiary/80 bg-tertiary/5 shadow-[0_0_30px_rgba(208,188,255,0.25)]',
+      hoverBorderClass: 'hover:border-tertiary/60 hover:shadow-[0_0_20px_rgba(208,188,255,0.15)]',
+      glowStyle: { boxShadow: '0 0 40px rgba(208, 188, 255, 0.1) inset' },
+      accentColor: '#d0bcff',
     },
     {
       role: 'CTO' as UserRole,
       icon: 'terminal',
-      outcome: 'I want to audit system architectures and run live sandboxes.',
-      description: 'Audit live system architectures, run real-time server traffic stress-testers, and solve code debuggers.',
-      details: 'WebSocket system maps, bugs sandbox, & telemetry',
-      borderClass: 'border-primary/20 hover:border-primary hover:shadow-[0_0_25px_rgba(78,222,163,0.2)]',
-      accentColor: 'text-primary',
+      title: 'Technical Lead',
+      subtitle: 'CTO & Engineering Portal',
+      consoleText: 'Unlocks live system telemetry maps, interactive debugging sandboxes, and WebSocket diagnostics to audit my system architectures.',
+      colorClass: 'text-primary',
+      borderColor: 'border-primary/20',
+      activeBorderClass: 'border-primary/80 bg-primary/5 shadow-[0_0_30px_rgba(78,222,163,0.3)]',
+      hoverBorderClass: 'hover:border-primary/60 hover:shadow-[0_0_20px_rgba(78,222,163,0.15)]',
+      glowStyle: { boxShadow: '0 0 40px rgba(78, 222, 163, 0.15) inset' },
+      accentColor: '#4edea3',
     },
   ];
+
+  const activeDisplayRole = hoveredRole || selectedRole;
+  const activeCard = cards.find(c => c.role === activeDisplayRole);
+  
+  const consoleHeader = activeCard 
+    ? `[SYSTEM MODE: ${activeCard.title.toUpperCase()}]`
+    : '[SYSTEM LOG: AWAITING PERSPECTIVE INITIALIZATION]';
+
+  const consoleMessage = activeCard 
+    ? activeCard.consoleText
+    : 'Select or hover over an access card above to configure the portfolio environment...';
+
+  const activeColorClass = activeCard ? activeCard.colorClass : 'text-on-surface-variant';
+  const selectedAccentColor = cards.find(c => c.role === selectedRole)?.accentColor;
 
   return (
     <div
       role="dialog"
       aria-modal="true"
-      className={`fixed inset-0 z-[100] overflow-y-auto bg-background/25 backdrop-blur-[6px] transition-all duration-400 ease-in-out ${
+      className={`fixed inset-0 z-[100] overflow-y-auto bg-background/30 backdrop-blur-[8px] transition-all duration-400 ease-in-out flex items-center justify-center ${
         isExiting ? 'opacity-0 blur-md' : 'opacity-100 blur-0 animate-fade-in'
       }`}
     >
-      <div className="min-h-full w-full flex justify-center items-start sm:items-center p-4">
+      <div className="min-h-full w-full flex justify-center items-center p-4">
         <div
-          className={`w-full max-w-5xl rounded-3xl p-5 sm:p-7 md:p-8 glass-card border border-outline-variant/60 flex flex-col items-center gap-5 sm:gap-7 transition-all duration-400 bg-surface-container-lowest/80 ${
+          className={`w-full max-w-4xl rounded-3xl p-6 sm:p-8 glass-card border border-outline-variant/60 flex flex-col items-center gap-6 sm:gap-8 transition-all duration-400 bg-surface-container-lowest/90 ${
             isExiting ? 'scale-95 opacity-0' : 'animate-scale-up'
           }`}
           style={{
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05)',
+            boxShadow: '0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.05)',
           }}
         >
           {/* Header Block */}
-          <div className="text-center flex flex-col items-center gap-1.5 max-w-2xl">
+          <div className="text-center flex flex-col items-center gap-2 max-w-2xl">
             <h1 className="font-headline-lg text-lg sm:text-2xl md:text-3xl font-extrabold uppercase tracking-wider sm:tracking-widest text-on-surface leading-tight">
               Mohammed Shaheer Moidin
             </h1>
-            <p className="font-code-md text-[9px] sm:text-xs uppercase tracking-wider text-primary">
+            <p className="font-code-md text-[10px] sm:text-xs uppercase tracking-wider text-primary font-bold">
               Full Stack Tech Lead & Solutions Architect
             </p>
-            <h2 className="font-body-lg text-xs sm:text-sm md:text-base text-on-surface-variant font-medium leading-relaxed px-2 mt-1">
-              Welcome. How would you like to explore Mohammed's engineering catalog today?
-            </h2>
+            <p className="font-body-md text-xs sm:text-sm text-on-surface-variant font-medium leading-relaxed px-4 mt-1">
+              Welcome to my interactive portfolio. To help you explore my experience and background efficiently, select a perspective below to tailor the interface layout, metrics, and highlights to your focus.
+            </p>
           </div>
 
-          {/* Outcome Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 w-full">
-            {cards.map((card, idx) => (
+          {/* simplified perspective Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+            {cards.map((card) => {
+              const isSelected = selectedRole === card.role;
+              return (
+                <button
+                  key={card.role}
+                  onClick={() => handleCardClick(card.role)}
+                  onMouseEnter={() => setHoveredRole(card.role)}
+                  onMouseLeave={() => setHoveredRole(null)}
+                  className={`flex flex-col items-center justify-center text-center p-6 rounded-2xl bg-surface-container/30 border backdrop-blur-md transition-all duration-300 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                    isSelected ? card.activeBorderClass : `${card.borderColor} ${card.hoverBorderClass}`
+                  }`}
+                  style={isSelected ? card.glowStyle : undefined}
+                >
+                  {/* Icon badge */}
+                  <div className={`w-12 h-12 rounded-2xl bg-surface-container-high/60 border border-outline-variant flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-background ${card.colorClass}`}>
+                    <span className="material-symbols-outlined text-2xl font-light select-none">
+                      {card.icon}
+                    </span>
+                  </div>
+
+                  {/* Title Outcome */}
+                  <h3 className="font-headline-md text-sm md:text-base font-bold text-on-surface leading-snug mb-1 transition-colors duration-200 group-hover:text-primary">
+                    {card.title}
+                  </h3>
+
+                  {/* Subtitle */}
+                  <span className="font-code-md text-[10px] uppercase tracking-wider text-on-surface-variant/70">
+                    {card.subtitle}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Interactive Console Log Output */}
+          <div className="w-full bg-surface-container-lowest/90 border border-outline-variant/50 rounded-2xl p-4 font-code-md text-[11px] sm:text-xs flex flex-col gap-2 relative overflow-hidden">
+            {/* Top header tabs decoration to feel like real console */}
+            <div className="flex items-center justify-between border-b border-outline-variant/30 pb-2 mb-1">
+              <span className="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-red-500/80"></span>
+                <span className="w-2 h-2 rounded-full bg-yellow-500/80"></span>
+                <span className="w-2 h-2 rounded-full bg-green-500/80"></span>
+                <span className="ml-1">Telemetry Diagnostics</span>
+              </span>
+              <span className="text-[9px] text-on-surface-variant/40">v4.3.0_RELEASE</span>
+            </div>
+
+            {/* Live streaming/updating output text */}
+            <div className="min-h-[40px] flex flex-col gap-1">
+              <div className="text-[10px] text-on-surface-variant/60 uppercase font-bold tracking-wider">
+                {consoleHeader}
+              </div>
+              <div className={`leading-relaxed transition-colors duration-300 ${activeColorClass}`}>
+                {consoleMessage}
+                <span className="ml-1 inline-block w-1.5 h-3 bg-current align-middle animate-blink"></span>
+              </div>
+            </div>
+          </div>
+
+          {/* Action trigger (fades in only when a role is selected) */}
+          <div className="h-12 w-full flex items-center justify-center">
+            {selectedRole && (
               <button
-                key={card.role}
-                onClick={() => handleSelect(card.role)}
-                className={`flex flex-col text-left p-4 sm:p-5 rounded-2xl bg-surface-container/60 border backdrop-blur-md transition-all duration-300 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                  card.borderClass
-                } ${selectedRole === card.role ? 'bg-primary/10 border-primary scale-102 shadow-[0_0_30px_rgba(78,222,163,0.25)]' : ''}`}
+                onClick={() => handleBoot(selectedRole)}
+                className="w-full sm:w-auto px-8 py-3 rounded-xl uppercase tracking-wider font-code-md text-xs font-bold bg-surface-container/60 hover:bg-background border transition-all duration-300 cursor-pointer shadow-lg animate-fade-in"
                 style={{
-                  animationDelay: `${idx * 100}ms`,
-                  animationFillMode: 'both',
+                  borderColor: selectedAccentColor,
+                  color: selectedAccentColor,
+                  boxShadow: `0 0 20px ${selectedAccentColor}30`,
                 }}
               >
-                {/* Icon badge */}
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-surface-container-high/80 border border-outline-variant flex items-center justify-center mb-3 sm:mb-4 transition-all duration-300 group-hover:scale-110 group-hover:bg-background ${card.accentColor}`}>
-                  <span className="material-symbols-outlined text-lg sm:text-xl font-light select-none">
-                    {card.icon}
-                  </span>
-                </div>
-
-                {/* Title Outcome */}
-                <h3 className="font-headline-md text-xs sm:text-sm md:text-md font-bold text-on-surface leading-snug mb-1.5 transition-colors duration-200 group-hover:text-primary">
-                  "{card.outcome}"
-                </h3>
-
-                {/* Sub-description */}
-                <p className="font-body-md text-[11px] sm:text-xs text-on-surface-variant leading-relaxed mb-3 flex-grow">
-                  {card.description}
-                </p>
-
-                {/* Dynamic Specs details inline */}
-                <div className="mt-auto pt-2 border-t border-outline-variant/30 flex items-center justify-between w-full">
-                  <span className="font-code-md text-[9px] uppercase tracking-wider text-primary font-bold group-hover:underline">
-                    {card.details}
-                  </span>
-                </div>
+                [ Boot {selectedRole} Console ]
               </button>
-            ))}
+            )}
           </div>
         </div>
       </div>
